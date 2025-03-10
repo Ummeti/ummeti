@@ -1,0 +1,200 @@
+{
+  "Metadata": {
+    "home": {
+      "title": "Ummeti Foundation – Penggalangan Dana Zakat & Sadaqah untuk Mereka yang Membutuhkan",
+      "description": "Ummeti Foundation adalah organisasi nirlaba Islam terpercaya yang berdedikasi untuk mengumpulkan Zakat, Sadaqah, dan donasi guna mendukung kaum miskin, anak yatim, dan mereka yang mengalami krisis. Bergabunglah dengan kami dalam menunaikan kewajiban Islam Anda melalui amal, bantuan kemanusiaan, dan proyek bantuan berkelanjutan di seluruh dunia. Donasi sekarang!"
+    }
+  },
+  "Header": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "projects": "Proyek",
+    "blog": "Blog",
+    "contact": "Kontak",
+    "donate": "Donasi"
+  },
+  "HeroSection": {
+    "title": "Jadilah tangan yang membantu",
+    "description": "Berkontribusi untuk membangun masa depan yang lebih baik bagi bangsa",
+    "button": "Donasi sekarang"
+  },
+  "StatisticsSection": {
+    "projects": "Proyek",
+    "supporters": "Pendukung",
+    "served": "Orang yang dibantu",
+    "ctaTitle": "Jadilah Bagian dari Perubahan",
+    "ctaLink": "Jadi relawan"
+  },
+  "AboutSection": {
+    "title": "Siapa kami?",
+    "description": "Kami adalah sekelompok profesional muda dari berbagai bidang, termasuk administrasi, teknik, akuntansi, dan hukum. Dipersatukan oleh minat yang sama, kami memiliki visi untuk memberikan dampak positif bagi masyarakat.",
+    "goals": {
+      "vision": {
+        "title": "Visi Kami",
+        "description": "Menjadi kekuatan utama dalam pelayanan masyarakat, mendorong inovasi, dan mempromosikan pembangunan berkelanjutan."
+      },
+      "mission": {
+        "title": "Misi Kami",
+        "description": [
+          "Mengembangkan dan melaksanakan proyek komunitas yang memenuhi kebutuhan sosial dan menciptakan perubahan yang berarti.",
+          "Bermitra dengan organisasi lokal dan internasional untuk bertukar keahlian dan menerapkan praktik terbaik.",
+          "Memberdayakan anggota kami melalui pelatihan berkelanjutan, pengembangan keterampilan, dan pertumbuhan profesional."
+        ]
+      },
+      "goals": {
+        "title": "Tujuan Kami",
+        "description": [
+          "Meningkatkan kesadaran masyarakat dan menumbuhkan budaya kerelawanan.",
+          "Meluncurkan proyek pembangunan berkelanjutan di berbagai sektor.",
+          "Mempromosikan solidaritas sosial dan memberikan dukungan kepada mereka yang membutuhkan.",
+          "Mendorong inovasi dan kreativitas di kalangan anak muda.",
+          "Membangun kemitraan yang kuat di tingkat lokal dan internasional."
+        ]
+      },
+      "values": {
+        "title": "Nilai-Nilai Kami",
+        "description": [
+          "Integritas dan transparansi dalam setiap langkah kami.",
+          "Kolaborasi dan kerja tim untuk mencapai dampak yang lebih besar.",
+          "Komitmen terhadap keunggulan dan pencapaian tujuan yang bermakna.",
+          "Menghormati keberagaman, inklusi, dan kesempatan yang setara.",
+          "Belajar sepanjang hayat dan pengembangan diri secara berkelanjutan."
+        ]
+      }
+    }
+  },
+  "ProjectsSection": {
+    "title": "Proyek",
+    "projectCard": {
+      "goal": "Tujuan",
+      "button": "Donasi"
+    }
+  },
+  "VolunteerSection": {
+    "title": "Jadilah Relawan Sekarang",
+    "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, nulla sapiente. Temporibus aut, aspernatur omnis iste inventore nulla neque? Saepe suscipit sequi qui ex doloremque sunt obcaecati, deserunt quisquam voluptate!",
+    "form": {
+      "name": "Nama",
+      "subject": "Subjek",
+      "email": "Email",
+      "message": "Pesan",
+      "sendButton": "Kirim",
+      "sending": "Mengirim..."
+    }
+  },
+  "TestimonialsSection": {
+    "title": "Apa yang orang katakan tentang Ummeti"
+  },
+  "ProjectsPage": {
+    "title": "Proyek",
+    "allTab": "Semua"
+  },
+  "DonationForm": {
+    "fullName": "Nama lengkap",
+    "email": "Email",
+    "amount": "Jumlah donasi",
+    "cardNumber": "Nomor kartu",
+    "expirationDate": "Tanggal kedaluwarsa",
+    "securityCode": "Kode keamanan",
+    "donateNow": "Donasi Sekarang"
+  },
+  "AboutPage": {
+    "title": "Tentang Ummeti",
+    "description": "Ummeti adalah organisasi global yang bertujuan mendukung isu-isu umat Islam dan memperjuangkan perjuangan Palestina.",
+    "heroImageAlt": "Gambar Tentang Kami",
+    "secondImageAlt": "Ummeti",
+    "stats": {
+      "projects": "Proyek",
+      "supporters": "Pendukung",
+      "peopleServed": "Orang yang Dibantu"
+    },
+    "sections": {
+      "vision": {
+        "title": "Visi Ummeti",
+        "content": "Organisasi global yang bekerja dalam kerangka kelembagaan..."
+      },
+      "objectives": {
+        "title": "Tujuan Ummeti",
+        "content": "Menyatukan dan mengoordinasikan upaya umat Islam..."
+      },
+      "uniqueness": {
+        "title": "Apa yang Membuat Ummeti Berbeda?",
+        "content": "Jaringan global dengan akses ke sumber daya, kerja kelembagaan, dan transparansi."
+      },
+      "targetGroups": {
+        "title": "Kelompok Sasaran",
+        "content": "Mereka yang terkena dampak perang, pengungsi, orang-orang yang terlantar, kelompok tertindas, dan anak yatim."
+      }
+    }
+  },
+  "ContactPage": {
+    "title": "Hubungi Kami",
+    "description": "Hubungi kami untuk pertanyaan atau dukungan.",
+    "form": {
+      "name": {
+        "label": "Nama",
+        "placeholder": "Masukkan nama Anda"
+      },
+      "subject": {
+        "label": "Subjek",
+        "placeholder": "Masukkan subjek"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Masukkan email Anda"
+      },
+      "message": {
+        "label": "Pesan",
+        "placeholder": "Masukkan pesan Anda"
+      },
+      "button": {
+        "send": "Kirim Pesan",
+        "sending": "Mengirim..."
+      }
+    }
+  },
+  "ContactInfo": {
+    "address": {
+      "title": "Alamat",
+      "value": "123 Jalan Utama, Kota, Negara"
+    },
+    "phone": {
+      "title": "Telepon",
+      "value": "+1 (123) 456-7890"
+    },
+    "email": {
+      "title": "Email",
+      "value": "info@ummeti.org"
+    }
+  },
+  "socials": {
+    "title": "Ikuti Kami"
+  },
+  "Footer": {
+    "description": "Ummeti adalah organisasi global yang bertujuan mendukung isu-isu umat Islam dan memperjuangkan perjuangan Palestina.",
+    "aboutUs": "Tentang Kami",
+    "aboutUsItems": {
+      "volunteerNow": "Jadi Relawan Sekarang",
+      "story": "Kisah Kami",
+      "projects": "Proyek"
+    },
+    "resources": "Sumber Daya",
+    "resourcesItems": {
+      "donors": "Donatur",
+      "community": "Komunitas",
+      "events": "Acara"
+    },
+    "helpfulLinks": "Tautan Berguna",
+    "helpfulLinksItems": {
+      "faqs": "FAQs",
+      "contact": "Kontak",
+      "projects": "Proyek"
+    },
+    "contactUs": "Hubungi Kami",
+    "legal": {
+      "allRightsReserved": "Seluruh hak cipta dilindungi.",
+      "termsAndConditions": "Syarat & Ketentuan",
+      "privacyPolicy": "Kebijakan Privasi"
+    }
+  }
+}

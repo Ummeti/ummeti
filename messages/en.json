@@ -1,0 +1,200 @@
+{
+  "Metadata": {
+    "home": {
+      "title": "Ummeti Foundation – Zakat & Sadaqah Fundraising for Those in Need",
+      "description": "Ummeti Foundation is a trusted Islamic nonprofit dedicated to collecting Zakat, Sadaqah, and donations to support the poor, orphans, and those in crisis. Join us in fulfilling your Islamic duty through charity, humanitarian aid, and sustainable relief projects worldwide. Donate today!"
+    }
+  },
+  "Header": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact",
+    "donate": "Donate"
+  },
+  "HeroSection": {
+    "title": "Be a helping hand",
+    "description": "Contribute to building a better future for the nation",
+    "button": "Donate now"
+  },
+  "StatisticsSection": {
+    "projects": "Projects",
+    "supporters": "Supporters",
+    "served": "People served",
+    "ctaTitle": "Be Part of the Change",
+    "ctaLink": "Become volunteer"
+  },
+  "AboutSection": {
+    "title": "Who are we?",
+    "description": "We are a group of young professionals from diverse fields, including administration, engineering, accounting, and law. Brought together by shared interests, we are united by a vision to make a positive impact on society.",
+    "goals": {
+      "vision": {
+        "title": "Our Vision",
+        "description": "To become a leading force in community service, driving innovation, and promoting sustainable development."
+      },
+      "mission": {
+        "title": "Our Mission",
+        "description": [
+          "Develop and implement community projects that address societal needs and drive meaningful change.",
+          "Partner with local and international organizations to exchange expertise and adopt best practices.",
+          "Empower our members through continuous training, skill development, and professional growth."
+        ]
+      },
+      "goals": {
+        "title": "Our Goals",
+        "description": [
+          "Raise community awareness and foster a culture of volunteerism.",
+          "Launch sustainable development projects across various sectors.",
+          "Promote social solidarity and provide support to those in need.",
+          "Encourage innovation and creativity among young people.",
+          "Build strong partnerships at both local and international levels."
+        ]
+      },
+      "values": {
+        "title": "Our Values",
+        "description": [
+          "Integrity and transparency in all our endeavors.",
+          "Collaboration and teamwork to achieve greater impact.",
+          "Commitment to excellence and achieving meaningful goals.",
+          "Respect for diversity, inclusion, and equal opportunities.",
+          "Lifelong learning and continuous self-improvement."
+        ]
+      }
+    }
+  },
+  "ProjectsSection": {
+    "title": "Projects",
+    "projectCard": {
+      "goal": "Goal",
+      "button": "Donate"
+    }
+  },
+  "VolunteerSection": {
+    "title": "Volunteer Now",
+    "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, nulla sapiente. Temporibus aut, aspernatur omnis iste inventore nulla neque? Saepe suscipit sequi qui ex doloremque sunt obcaecati, deserunt quisquam voluptate!",
+    "form": {
+      "name": "Name",
+      "subject": "Subject",
+      "email": "Email",
+      "message": "Message",
+      "sendButton": "Send",
+      "sending": "Sending..."
+    }
+  },
+  "TestimonialsSection": {
+    "title": "What people say about Ummeti"
+  },
+  "ProjectsPage": {
+    "title": "Projects",
+    "allTab": "All"
+  },
+  "DonationForm": {
+    "fullName": "Full name",
+    "email": "Email",
+    "amount": "Amount to donate",
+    "cardNumber": "Card number",
+    "expirationDate": "Expiration date",
+    "securityCode": "Security code",
+    "donateNow": "Donate Now"
+  },
+  "AboutPage": {
+    "title": "About Ummeti",
+    "description": "Ummeti is a global organization aimed at supporting the issues of the Islamic nation and advocating for the Palestinian cause.",
+    "heroImageAlt": "About Us image",
+    "secondImageAlt": "Ummeti",
+    "stats": {
+      "projects": "Projects",
+      "supporters": "Supporters",
+      "peopleServed": "People Served"
+    },
+    "sections": {
+      "vision": {
+        "title": "Ummeti's Vision",
+        "content": "A global organization working within an institutional framework..."
+      },
+      "objectives": {
+        "title": "Ummeti's Objectives",
+        "content": "Unifying and coordinating the efforts of the Islamic nation..."
+      },
+      "uniqueness": {
+        "title": "What Sets Ummeti Apart?",
+        "content": "A global network with access to resources, institutional work, and transparency."
+      },
+      "targetGroups": {
+        "title": "Targeted Groups",
+        "content": "Those affected by wars, refugees, displaced individuals, oppressed groups, and orphans."
+      }
+    }
+  },
+  "ContactPage": {
+    "title": "Contact Us",
+    "description": "Get in touch with us for any inquiries or support.",
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "Enter the subject"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Enter your message"
+      },
+      "button": {
+        "send": "Send Message",
+        "sending": "Sending..."
+      }
+    }
+  },
+  "ContactInfo": {
+    "address": {
+      "title": "Address",
+      "value": "123 Main Street, City, Country"
+    },
+    "phone": {
+      "title": "Phone",
+      "value": "+1 (123) 456-7890"
+    },
+    "email": {
+      "title": "Email",
+      "value": "info@ummeti.org"
+    }
+  },
+  "socials": {
+    "title": "Follow Us"
+  },
+  "Footer": {
+    "description": "Ummeti is a global organization aimed at supporting the issues of the Islamic nation and advocating for the Palestinian cause.",
+    "aboutUs": "About Us",
+    "aboutUsItems": {
+      "volunteerNow": "Volunteer Now",
+      "story": "Story",
+      "projects": "Projects"
+    },
+    "resources": "Resources",
+    "resourcesItems": {
+      "donors": "Donors",
+      "community": "Community",
+      "events": "Events"
+    },
+    "helpfulLinks": "Helpful Links",
+    "helpfulLinksItems": {
+      "faqs": "FAQs",
+      "contact": "Contact",
+      "projects": "Projects"
+    },
+    "contactUs": "Contact Us",
+    "legal": {
+      "allRightsReserved": "All rights reserved.",
+      "termsAndConditions": "Terms & Conditions",
+      "privacyPolicy": "Privacy Policy"
+    }
+  }
+}

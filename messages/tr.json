@@ -1,0 +1,200 @@
+{
+  "Metadata": {
+    "home": {
+      "title": "Ummeti Vakfı – İhtiyaç Sahipleri İçin Zekat ve Sadaka Toplama",
+      "description": "Ummeti Vakfı, zekat, sadaka ve bağışları toplayarak yoksullara, yetimlere ve kriz içinde olanlara destek olmayı amaçlayan güvenilir bir İslami yardım kuruluşudur. Hayır işleri, insani yardım ve dünya çapında sürdürülebilir yardım projeleriyle İslami görevinizi yerine getirmemize katılın. Bugün bağış yapın!"
+    }
+  },
+  "Header": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "projects": "Projeler",
+    "blog": "Blog",
+    "contact": "İletişim",
+    "donate": "Bağış Yap"
+  },
+  "HeroSection": {
+    "title": "Şimdi yardım eli ol",
+    "description": "Ulus için daha iyi bir gelecek inşa etmeye katkıda bulun",
+    "button": "Şimdi bağış yap"
+  },
+  "StatisticsSection": {
+    "projects": "Projeler",
+    "supporters": "Destekçiler",
+    "served": "Faydalananlar",
+    "ctaTitle": "Değişimin Bir Parçası Ol",
+    "ctaLink": "Gönüllü ol"
+  },
+  "AboutSection": {
+    "title": "Biz kimiz?",
+    "description": "Yönetim, mühendislik, muhasebe ve hukuk dahil olmak üzere çeşitli alanlardan genç profesyonellerden oluşan bir grubuz. Ortak ilgilerle bir araya gelen bizler, toplum üzerinde olumlu bir etki yaratma vizyonuyla birleştik.",
+    "goals": {
+      "vision": {
+        "title": "Vizyonumuz",
+        "description": "Toplum hizmetinde öncü bir güç olmak, yeniliği teşvik etmek ve sürdürülebilir kalkınmayı desteklemek."
+      },
+      "mission": {
+        "title": "Misyonumuz",
+        "description": [
+          "Toplumsal ihtiyaçları karşılayan ve anlamlı değişimi sağlayan topluluk projeleri geliştirmek ve uygulamak.",
+          "Uzmanlık alışverişi yapmak ve en iyi uygulamaları benimsemek için yerel ve uluslararası kuruluşlarla ortaklık kurmak.",
+          "Üyelerimizi sürekli eğitim, beceri geliştirme ve profesyonel büyüme yoluyla güçlendirmek."
+        ]
+      },
+      "goals": {
+        "title": "Hedeflerimiz",
+        "description": [
+          "Toplum bilincini artırmak ve gönüllülük kültürünü teşvik etmek.",
+          "Çeşitli sektörlerde sürdürülebilir kalkınma projeleri başlatmak.",
+          "Sosyal dayanışmayı teşvik etmek ve ihtiyaç sahiplerine destek sağlamak.",
+          "Gençler arasında yenilikçilik ve yaratıcılığı teşvik etmek.",
+          "Hem yerel hem de uluslararası düzeyde güçlü ortaklıklar kurmak."
+        ]
+      },
+      "values": {
+        "title": "Değerlerimiz",
+        "description": [
+          "Tüm çabalarımızda dürüstlük ve şeffaflık.",
+          "Daha büyük etki yaratmak için işbirliği ve takım çalışması.",
+          "Mükemmelliğe ve anlamlı hedeflere ulaşmaya bağlılık.",
+          "Çeşitlilik, kapsayıcılık ve eşit fırsatlara saygı.",
+          "Yaşam boyu öğrenme ve sürekli kendini geliştirme."
+        ]
+      }
+    }
+  },
+  "ProjectsSection": {
+    "title": "Projeler",
+    "projectCard": {
+      "goal": "Hedef",
+      "button": "Bağış Yap"
+    }
+  },
+  "VolunteerSection": {
+    "title": "Şimdi Gönüllü Ol",
+    "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, nulla sapiente. Temporibus aut, aspernatur omnis iste inventore nulla neque? Saepe suscipit sequi qui ex doloremque sunt obcaecati, deserunt quisquam voluptate!",
+    "form": {
+      "name": "İsim",
+      "subject": "Konu",
+      "email": "E-posta",
+      "message": "Mesaj",
+      "sendButton": "Gönder",
+      "sending": "Gönderiliyor..."
+    }
+  },
+  "TestimonialsSection": {
+    "title": "İnsanlar Ummeti hakkında ne diyor"
+  },
+  "ProjectsPage": {
+    "title": "Projeler",
+    "allTab": "Tümü"
+  },
+  "DonationForm": {
+    "fullName": "Tam ad",
+    "email": "E-posta",
+    "amount": "Bağış miktarı",
+    "cardNumber": "Kart numarası",
+    "expirationDate": "Son kullanma tarihi",
+    "securityCode": "Güvenlik kodu",
+    "donateNow": "Şimdi Bağış Yap"
+  },
+  "AboutPage": {
+    "title": "Ummeti Hakkında",
+    "description": "Ummeti, İslam ümmetinin sorunlarını desteklemeyi ve Filistin davasını savunmayı amaçlayan küresel bir kuruluştur.",
+    "heroImageAlt": "Hakkımızda resmi",
+    "secondImageAlt": "Ummeti",
+    "stats": {
+      "projects": "Projeler",
+      "supporters": "Destekçiler",
+      "peopleServed": "Hizmet Edilen Kişiler"
+    },
+    "sections": {
+      "vision": {
+        "title": "Ummeti'nin Vizyonu",
+        "content": "Kurumsal bir çerçeve içinde çalışan küresel bir organizasyon..."
+      },
+      "objectives": {
+        "title": "Ummeti'nin Hedefleri",
+        "content": "İslam ümmetinin çabalarını birleştirmek ve koordine etmek..."
+      },
+      "uniqueness": {
+        "title": "Ummeti'yi Farklı Kılan Nedir?",
+        "content": "Kaynaklara erişimi olan küresel bir ağ, kurumsal çalışma ve şeffaflık."
+      },
+      "targetGroups": {
+        "title": "Hedef Gruplar",
+        "content": "Savaşlardan etkilenenler, mülteciler, yerinden edilmiş kişiler, ezilen gruplar ve yetimler."
+      }
+    }
+  },
+  "ContactPage": {
+    "title": "Bize Ulaşın",
+    "description": "Herhangi bir soru veya destek için bizimle iletişime geçin.",
+    "form": {
+      "name": {
+        "label": "Ad",
+        "placeholder": "Adınızı girin"
+      },
+      "subject": {
+        "label": "Konu",
+        "placeholder": "Konu girin"
+      },
+      "email": {
+        "label": "E-posta",
+        "placeholder": "E-posta adresinizi girin"
+      },
+      "message": {
+        "label": "Mesaj",
+        "placeholder": "Mesajınızı girin"
+      },
+      "button": {
+        "send": "Mesajı Gönder",
+        "sending": "Gönderiliyor..."
+      }
+    }
+  },
+  "ContactInfo": {
+    "address": {
+      "title": "Adres",
+      "value": "123 Ana Cadde, Şehir, Ülke"
+    },
+    "phone": {
+      "title": "Telefon",
+      "value": "+1 (123) 456-7890"
+    },
+    "email": {
+      "title": "E-posta",
+      "value": "info@ummeti.org"
+    }
+  },
+  "socials": {
+    "title": "Bizi Takip Edin"
+  },
+  "Footer": {
+    "description": "Ummeti, İslam milletinin sorunlarını desteklemeyi ve Filistin davasını savunmayı amaçlayan küresel bir organizasyondur.",
+    "aboutUs": "Hakkımızda",
+    "aboutUsItems": {
+      "volunteerNow": "Şimdi Gönüllü Ol",
+      "story": "Hikaye",
+      "projects": "Projeler"
+    },
+    "resources": "Kaynaklar",
+    "resourcesItems": {
+      "donors": "Bağışçılar",
+      "community": "Topluluk",
+      "events": "Etkinlikler"
+    },
+    "helpfulLinks": "Yararlı Bağlantılar",
+    "helpfulLinksItems": {
+      "faqs": "SSS",
+      "contact": "İletişim",
+      "projects": "Projeler"
+    },
+    "contactUs": "Bize Ulaşın",
+    "legal": {
+      "allRightsReserved": "Tüm hakları saklıdır.",
+      "termsAndConditions": "Şartlar ve Koşullar",
+      "privacyPolicy": "Gizlilik Politikası"
+    }
+  }
+}
