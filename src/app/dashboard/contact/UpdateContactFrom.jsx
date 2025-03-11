@@ -72,6 +72,19 @@ export default function UpdateContactForm({ contact }) {
         <div>
           <input
             type="url"
+            name="location"
+            placeholder="Location URL"
+            defaultValue={state.formObject?.location || contact?.location}
+            className="w-full rounded-lg py-3 px-4 border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none"
+            disabled={isPending}
+          />
+          {state.errors?.location && (
+            <p className="text-red-500 text-sm mt-1">{state.errors.location}</p>
+          )}
+        </div>
+        <div>
+          <input
+            type="url"
             name="youtube"
             placeholder="YouTube URL"
             defaultValue={state.formObject?.youtube || contact?.youtube}

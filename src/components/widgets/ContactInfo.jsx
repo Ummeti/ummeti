@@ -3,13 +3,13 @@ import Link from 'next/link';
 
 export default async function ContactInfo({ color }) {
   const contact = await fetchContact();
-  const { email, phone, address } = contact;
+  const { email, phone, location = '', address } = contact;
   return (
     <ul className="flex flex-col items-center sm:items-start justify-center mt-8 space-y-4 text-sm">
       <li>
         <Link
+          href={`mailto:${email || '#'}`}
           className="flex items-center gap-2 ltr:sm:justify-start rtl:sm:justify-end"
-          href="mailto:info@example.com"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -32,8 +32,8 @@ export default async function ContactInfo({ color }) {
 
       <li>
         <Link
+          href={`tel:${phone || '#'}`}
           className="flex items-center gap-2 ltr:sm:justify-start rtl:sm:justify-end"
-          href={`tel:${phone}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,28 +54,34 @@ export default async function ContactInfo({ color }) {
         </Link>
       </li>
 
-      <li className="flex items-start gap-2 ltr:sm:justify-start rtl:sm:justify-end">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className={`size-5 shrink-0 ${color}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2"
+      <li>
+        <Link
+          href={location || '#'}
+          target="_blank"
+          className="flex items-start gap-2 ltr:sm:justify-start rtl:sm:justify-end"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={`size-5 shrink-0 ${color}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
 
-        <address className={`-mt-0.5 not-italic ${color}`}>{address}</address>
+          <address className={`-mt-0.5 not-italic ${color}`}>{address}</address>
+        </Link>
       </li>
     </ul>
   );
