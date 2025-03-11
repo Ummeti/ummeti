@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
-import { signOutAction } from '../actions/signOutAction';
 import Image from 'next/image';
 import Link from 'next/link';
+import { signOutAction } from '@/app/actions/signOutAction';
 
 const Notification = () => (
   <svg

@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import DonationForm from './DonationForm';
 import ProjectDetails from './ProjectDetails';
 import Breadcrumb from '@/components/widgets/Breadcrumb';
@@ -8,6 +9,7 @@ export default async function Project({ params }) {
   const decodedSlug = decodeURIComponent(slug);
 
   const project = await fetchProjectBySlug(decodedSlug);
+  if (!project) notFound();
 
   return (
     <section className="bg-white px-4 sm:px-6 md:px-8 mx-auto mt-20 max-w-6xl">

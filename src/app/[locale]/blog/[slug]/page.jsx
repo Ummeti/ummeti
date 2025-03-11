@@ -2,14 +2,19 @@ import Image from 'next/image';
 import { fetchPostBySlug } from '@/lib/fetchData';
 import Breadcrumb from '@/components/widgets/Breadcrumb';
 import EmblaCarousel from '@/components/widgets/carousel/EmblaCarousel';
+import { notFound } from 'next/navigation';
 
 export default async function BlogPost({ params }) {
   const { slug } = await params;
   const decodedSlug = decodeURIComponent(slug);
 
-  const { title, description, images, createdAt } = await fetchPostBySlug(
-    decodedSlug
-  );
+  const post = await fetchPostBySlug(decodedSlug);
+
+  if (!post) {
+    return notFound();
+  }
+
+  const { title, description, images, createdAt } = post;
 
   return (
     <div className="max-w-6xl mx-auto mt-20 px-4 sm:px-6 lg:px-8">

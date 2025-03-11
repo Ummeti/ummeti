@@ -1,4 +1,4 @@
-import Item from './ui/Item';
+import Item from './Item';
 
 export default function Items({ items, headers, removeAction }) {
   return (

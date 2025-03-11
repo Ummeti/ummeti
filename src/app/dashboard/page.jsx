@@ -1,4 +1,4 @@
-import Items from './Items';
+import Items from './ui/Items';
 import Tabs from './ui/Tabs';
 import { CategoryIcon, PostIcon, ProjectIcon, UserIcon } from './ui/Icons';
 import { removeProjectAction } from '@/app/actions/projectActions';

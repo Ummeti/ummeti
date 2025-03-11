@@ -2,13 +2,11 @@
 
 import { useActionState } from 'react';
 import { sendEmailAction } from '@/app/actions/sendEmail';
-import ContactInfo from '../../widgets/ContactInfo';
-import Socials from '../../widgets/Socials';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl'; // Updated import
+import { useTranslations } from 'next-intl';
 
-export default function VolunteerSection() {
-  const t = useTranslations('VolunteerSection'); // Updated usage
+export default function VolunteerSection({ children }) {
+  const t = useTranslations('VolunteerSection');
 
   const initialState = {
     success: false,
@@ -52,8 +50,7 @@ export default function VolunteerSection() {
           <p className="text-sm text-gray-600 mt-4 leading-relaxed">
             {t('description')}
           </p>
-          <ContactInfo color="text-gray-900" />
-          <Socials color="text-gray-900" />
+          {children}{' '}
         </motion.div>
 
         <motion.div

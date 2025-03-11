@@ -106,6 +106,11 @@ export const fetchUsers = async () => {
   return enhanceUserWithProfilePicture(users);
 };
 
+export const fetchContact = async () => {
+  const contact = await prisma.contact.findFirst();
+  return contact;
+};
+
 export const fetchDashboardData = async () => {
   const [projects, posts, categories] = await Promise.all([
     fetchProjects(),

@@ -1,6 +1,9 @@
+import { fetchContact } from '@/lib/fetchData';
 import Link from 'next/link';
 
-export default function ContactInfo({ color }) {
+export default async function ContactInfo({ color }) {
+  const contact = await fetchContact();
+  const { email, phone, address } = contact;
   return (
     <ul className="flex flex-col items-center sm:items-start justify-center mt-8 space-y-4 text-sm">
       <li>
@@ -23,14 +26,14 @@ export default function ContactInfo({ color }) {
             />
           </svg>
 
-          <span className={color}>john@doe.com</span>
+          <span className={color}>{email}</span>
         </Link>
       </li>
 
       <li>
         <Link
           className="flex items-center gap-2 ltr:sm:justify-start rtl:sm:justify-end"
-          href="tel:+90"
+          href={`tel:${phone}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +50,7 @@ export default function ContactInfo({ color }) {
             />
           </svg>
 
-          <span className={color}>0123456789</span>
+          <span className={color}>{phone}</span>
         </Link>
       </li>
 
@@ -72,9 +75,7 @@ export default function ContactInfo({ color }) {
           />
         </svg>
 
-        <address className={`-mt-0.5 not-italic ${color}`}>
-          213 Lane, London, United Kingdom
-        </address>
+        <address className={`-mt-0.5 not-italic ${color}`}>{address}</address>
       </li>
     </ul>
   );

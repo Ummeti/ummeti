@@ -1,12 +1,15 @@
+import { fetchContact } from '@/lib/fetchData';
 import Link from 'next/link';
-import React from 'react';
 
-export default function Socials({ color }) {
+export default async function Socials({ color }) {
+  const contact = await fetchContact();
+  const { facebook, instagram, twitter, youtube } = contact;
+
   return (
     <ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
       <li>
         <Link
-          href="#"
+          href={facebook || '#'}
           rel="noreferrer"
           target="_blank"
           className={`${color} transition hover:${color}/75`}
@@ -28,7 +31,7 @@ export default function Socials({ color }) {
       </li>
       <li>
         <Link
-          href="#"
+          href={instagram || '#'}
           rel="noreferrer"
           target="_blank"
           className={`${color} transition hover:${color}/75`}
@@ -50,7 +53,7 @@ export default function Socials({ color }) {
       </li>
       <li>
         <Link
-          href="#"
+          href={twitter || '#'}
           rel="noreferrer"
           target="_blank"
           className={`${color} transition hover:${color}/75`}
@@ -68,7 +71,7 @@ export default function Socials({ color }) {
       </li>
       <li>
         <Link
-          href="#"
+          href={youtube || '#'}
           rel="noreferrer"
           target="_blank"
           className={`${color} transition hover:${color}/75`}

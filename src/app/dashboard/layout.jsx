@@ -1,7 +1,7 @@
 import { fetchUserById } from '@/lib/fetchData';
 import '../globals.css';
-import Navbar from './Navbar';
-import Sidebar from './Sidebar';
+import Sidebar from './layout/Sidebar';
+import ProfileDropdown from './layout/ProfileDropdown';
 import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
@@ -24,7 +24,7 @@ export default async function DashboardLayout({ children }) {
       <body className="flex min-h-screen">
         <Sidebar />
         <div className="flex-1">
-          <Navbar user={user} />
+          <ProfileDropdown user={user} />
           {children}
         </div>
       </body>
