@@ -153,20 +153,6 @@
       }
     }
   },
-  "ContactInfo": {
-    "address": {
-      "title": "العنوان",
-      "value": "123 الشارع الرئيسي، المدينة، البلد"
-    },
-    "phone": {
-      "title": "الهاتف",
-      "value": "+1 (123) 456-7890"
-    },
-    "email": {
-      "title": "البريد الإلكتروني",
-      "value": "info@ummati.org"
-    }
-  },
   "socials": {
     "title": "تابعنا"
   },

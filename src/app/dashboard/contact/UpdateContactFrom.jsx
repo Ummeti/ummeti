@@ -20,7 +20,7 @@ export default function UpdateContactForm({ contact }) {
   return (
     <div className="py-8">
       <h2 className="text-center text-gray-900 text-3xl font-bold">
-        Update Contact Information
+        Contact Information
       </h2>
       <form
         action={formAction}

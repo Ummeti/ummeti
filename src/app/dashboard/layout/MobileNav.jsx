@@ -1,6 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { AddIcon, ContactIcon, DashboardIcon, SettingsIcon } from './Icons';
+import {
+  AddIcon,
+  ContactIcon,
+  DashboardIcon,
+  ProfileIcon,
+  SettingsIcon,
+} from './Icons';
 
 export default function MobileNav() {
   return (
@@ -39,6 +45,14 @@ export default function MobileNav() {
             href="/dashboard/settings"
           >
             <SettingsIcon />
+          </Link>
+        </li>
+        <li>
+          <Link
+            className="flex items-center justify-center w-12 h-12 rounded hover:bg-main hover:text-white"
+            href="/dashboard/profile"
+          >
+            <ProfileIcon />
           </Link>
         </li>
       </ul>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { signOutAction } from '@/app/actions/signOutAction';
+import { ProfileIcon, ContactIcon, SettingsIcon } from './Icons';
 
 const Notification = () => (
   <svg
@@ -31,13 +32,11 @@ export default function ProfileDropdown({ user }) {
     <div className="relative">
       <header className="bg-main text-white p-4 shadow-lg">
         <div className="flex justify-end items-center space-x-4">
-          {/* Notification Icon */}
           <button className="relative p-2 rounded-full hover:bg-main-light transition">
             <Notification />
             <span className="absolute top-1 right-1 bg-red-500 rounded-full w-2 h-2"></span>
           </button>
 
-          {/* Profile Icon */}
           <button
             onClick={toggleDropdown}
             className="focus:outline-none relative"
@@ -54,7 +53,6 @@ export default function ProfileDropdown({ user }) {
         </div>
       </header>
 
-      {/* Dropdown Menu */}
       {isDropdownOpen && (
         <div className="absolute right-2 w-52 p-4 mt-2 bg-main text-white rounded-lg shadow-lg z-20 overflow-hidden">
           <div className="flex gap-2 pb-4 mb-2 border-b border-main-light">
@@ -73,15 +71,13 @@ export default function ProfileDropdown({ user }) {
 
           <ul>
             {[
-              { icon: ProfileIcon, label: 'My Profile' },
-              { icon: SettingsIcon, label: 'Settings' },
-              { icon: BillingIcon, label: 'Billing' },
-              { icon: FAQIcon, label: 'FAQs' },
-            ].map(({ icon: Icon, label }) => (
+              { icon: ProfileIcon, label: 'My Profile', href: 'profile' },
+              { icon: ContactIcon, label: 'Edit Contact', href: 'contact' },
+              { icon: SettingsIcon, label: 'Settings', href: 'settings' },
+            ].map(({ icon: Icon, label, href }) => (
               <li key={label}>
                 <Link
-                  href="/dashboard/settings"
-                  // href={`/dashboard/${label.replace(' ', '-').toLowerCase()}`}
+                  href={`/dashboard/${href}`}
                   className="flex items-center gap-2 px-2 py-2 text-sm hover:bg-main-light transition rounded-lg"
                 >
                   <Icon className="w-5 h-5 mr-2 text-gray-400" />
@@ -121,65 +117,3 @@ export default function ProfileDropdown({ user }) {
     </div>
   );
 }
-
-/* SVG Icons */
-const ProfileIcon = () => (
-  <svg
-    className="w-6 h-6"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    viewBox="0 0 24 24"
-  >
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-    <circle cx="12" cy="7" r="4"></circle>
-  </svg>
-);
-
-const SettingsIcon = () => (
-  <svg
-    className="w-6 h-6"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    viewBox="0 0 24 24"
-  >
-    <circle cx="12" cy="12" r="3"></circle>
-    <path d="M19.4 15a2 2 0 0 0 .2-1l-2-3.5a2 2 0 0 0-1-.5l-4-1-4 1a2 2 0 0 0-1 .5L4.4 14a2 2 0 0 0 .2 1l1.7 2.9a2 2 0 0 0 1.7 1H17a2 2 0 0 0 1.7-1l1.7-2.9z"></path>
-  </svg>
-);
-
-const BillingIcon = () => (
-  <svg
-    className="w-6 h-6"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    viewBox="0 0 24 24"
-  >
-    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-    <line x1="3" y1="9" x2="21" y2="9"></line>
-    <line x1="9" y1="21" x2="9" y2="9"></line>
-  </svg>
-);
-
-const FAQIcon = () => (
-  <svg
-    className="w-6 h-6"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    viewBox="0 0 24 24"
-  >
-    <path d="M18 8a6 6 0 0 0-12 0c0 4 6 6 6 6"></path>
-    <path d="M12 17h.01"></path>
-  </svg>
-);

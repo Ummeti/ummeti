@@ -153,20 +153,6 @@
       }
     }
   },
-  "ContactInfo": {
-    "address": {
-      "title": "Address",
-      "value": "123 Main Street, City, Country"
-    },
-    "phone": {
-      "title": "Phone",
-      "value": "+1 (123) 456-7890"
-    },
-    "email": {
-      "title": "Email",
-      "value": "info@ummeti.org"
-    }
-  },
   "socials": {
     "title": "Follow Us"
   },

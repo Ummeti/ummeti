@@ -4,7 +4,13 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { AddIcon, ContactIcon, DashboardIcon, SettingsIcon } from './Icons';
+import {
+  DashboardIcon,
+  AddIcon,
+  ContactIcon,
+  SettingsIcon,
+  ProfileIcon,
+} from './Icons';
 
 export default function LargeNav() {
   const pathname = usePathname();
@@ -12,9 +18,10 @@ export default function LargeNav() {
   const navLinks = useMemo(
     () => [
       { href: '/dashboard', label: 'Dashboard', icon: DashboardIcon },
-      { href: '/dashboard/add', label: 'Add', icon: AddIcon },
-      { href: '/dashboard/contact', label: 'Contact', icon: ContactIcon },
+      { href: '/dashboard/add', label: 'Add Item', icon: AddIcon },
+      { href: '/dashboard/contact', label: 'Edit Contact', icon: ContactIcon },
       { href: '/dashboard/settings', label: 'Settings', icon: SettingsIcon },
+      { href: '/dashboard/profile', label: 'My Profile', icon: ProfileIcon },
     ],
     []
   );

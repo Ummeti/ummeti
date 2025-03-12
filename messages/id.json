@@ -153,20 +153,6 @@
       }
     }
   },
-  "ContactInfo": {
-    "address": {
-      "title": "Alamat",
-      "value": "123 Jalan Utama, Kota, Negara"
-    },
-    "phone": {
-      "title": "Telepon",
-      "value": "+1 (123) 456-7890"
-    },
-    "email": {
-      "title": "Email",
-      "value": "info@ummeti.org"
-    }
-  },
   "socials": {
     "title": "Ikuti Kami"
   },

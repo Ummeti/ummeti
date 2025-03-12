@@ -21,7 +21,7 @@ export default function UpdateUserForm({ user }) {
   return (
     <div className="py-8">
       <h2 className="text-center text-gray-900 text-3xl font-bold">
-        Update Profile
+        My Profile
       </h2>
       <form
         action={formAction}
