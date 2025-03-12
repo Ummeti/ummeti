@@ -3,13 +3,12 @@ import Link from 'next/link';
 
 export default async function Socials({ color }) {
   const contact = await fetchContact();
-  const { facebook, instagram, twitter, youtube } = contact;
 
   return (
     <ul className="mt-8 flex justify-center gap-6 sm:justify-start md:gap-8">
       <li>
         <Link
-          href={facebook || '#'}
+          href={contact?.facebook || '#'}
           rel="noreferrer"
           target="_blank"
           className={`${color} transition hover:${color}/75`}
@@ -31,7 +30,7 @@ export default async function Socials({ color }) {
       </li>
       <li>
         <Link
-          href={instagram || '#'}
+          href={contact?.instagram || '#'}
           rel="noreferrer"
           target="_blank"
           className={`${color} transition hover:${color}/75`}
@@ -53,7 +52,7 @@ export default async function Socials({ color }) {
       </li>
       <li>
         <Link
-          href={twitter || '#'}
+          href={contact?.twitter || '#'}
           rel="noreferrer"
           target="_blank"
           className={`${color} transition hover:${color}/75`}
@@ -71,7 +70,7 @@ export default async function Socials({ color }) {
       </li>
       <li>
         <Link
-          href={youtube || '#'}
+          href={contact?.youtube || '#'}
           rel="noreferrer"
           target="_blank"
           className={`${color} transition hover:${color}/75`}

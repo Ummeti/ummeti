@@ -3,12 +3,11 @@ import Link from 'next/link';
 
 export default async function ContactInfo({ color }) {
   const contact = await fetchContact();
-  const { email, phone, location = '', address } = contact;
   return (
     <ul className="flex flex-col items-center sm:items-start justify-center mt-8 space-y-4 text-sm">
       <li>
         <Link
-          href={`mailto:${email || '#'}`}
+          href={`mailto:${contact?.email || '#'}`}
           className="flex items-center gap-2 ltr:sm:justify-start rtl:sm:justify-end"
         >
           <svg
@@ -26,13 +25,13 @@ export default async function ContactInfo({ color }) {
             />
           </svg>
 
-          <span className={color}>{email}</span>
+          <span className={color}>{contact?.email}</span>
         </Link>
       </li>
 
       <li>
         <Link
-          href={`tel:${phone || '#'}`}
+          href={`tel:${contact?.phone || '#'}`}
           className="flex items-center gap-2 ltr:sm:justify-start rtl:sm:justify-end"
         >
           <svg
@@ -50,13 +49,13 @@ export default async function ContactInfo({ color }) {
             />
           </svg>
 
-          <span className={color}>{phone}</span>
+          <span className={color}>{contact?.phone}</span>
         </Link>
       </li>
 
       <li>
         <Link
-          href={location || '#'}
+          href={contact?.location || '#'}
           target="_blank"
           className="flex items-start gap-2 ltr:sm:justify-start rtl:sm:justify-end"
         >
@@ -80,7 +79,9 @@ export default async function ContactInfo({ color }) {
             />
           </svg>
 
-          <address className={`-mt-0.5 not-italic ${color}`}>{address}</address>
+          <address className={`-mt-0.5 not-italic ${color}`}>
+            {contact?.address}
+          </address>
         </Link>
       </li>
     </ul>
