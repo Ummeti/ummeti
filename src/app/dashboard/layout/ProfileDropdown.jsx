@@ -3,25 +3,12 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { signOutAction } from '@/app/actions/signOutAction';
-import { ProfileIcon, ContactIcon, SettingsIcon } from './Icons';
-
-const Notification = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="1.5rem"
-    height="1.5rem"
-    viewBox="0 0 512 512"
-  >
-    <path
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={32}
-      d="M427.68 351.43C402 320 383.87 304 383.87 217.35C383.87 138 343.35 109.73 310 96c-4.43-1.82-8.6-6-9.95-10.55C294.2 65.54 277.8 48 256 48s-38.21 17.55-44 37.47c-1.35 4.6-5.52 8.71-9.95 10.53c-33.39 13.75-73.87 41.92-73.87 121.35C128.13 304 110 320 84.32 351.43C73.68 364.45 83 384 101.61 384h308.88c18.51 0 27.77-19.61 17.19-32.57M320 384v16a64 64 0 0 1-128 0v-16"
-    ></path>
-  </svg>
-);
+import {
+  NotificationIcon,
+  ProfileIcon,
+  ContactIcon,
+  SettingsIcon,
+} from './Icons';
 
 export default function ProfileDropdown({ user }) {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -33,7 +20,7 @@ export default function ProfileDropdown({ user }) {
       <header className="bg-main text-white p-4 shadow-lg">
         <div className="flex justify-end items-center space-x-4">
           <button className="relative p-2 rounded-full hover:bg-main-light transition">
-            <Notification />
+            <NotificationIcon />
             <span className="absolute top-1 right-1 bg-red-500 rounded-full w-2 h-2"></span>
           </button>
 
@@ -64,7 +51,7 @@ export default function ProfileDropdown({ user }) {
               height={96}
             />
             <div>
-              <h2 className="text-sm font-semibold">{user?.name}</h2>
+              <h2 className="text-sm font-semibold capitalize">{user?.name}</h2>
               <p className="text-xs text-gray-200">{user?.email}</p>
             </div>
           </div>
