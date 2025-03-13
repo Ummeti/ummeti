@@ -153,6 +153,15 @@
       }
     }
   },
+  "ReviewPage": {
+    "title": "شارك رأيك",
+    "firstNamePlaceholder": "الاسم الأول",
+    "lastNamePlaceholder": "اسم العائلة",
+    "reviewPlaceholder": "مراجعتك",
+    "submitting": "جارٍ الإرسال...",
+    "submitButton": "إرسال المراجعة",
+    "successMessage": "تم إرسال المراجعة بنجاح!"
+  },
   "socials": {
     "title": "تابعنا"
   },

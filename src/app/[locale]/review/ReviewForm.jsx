@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useActionState } from 'react';
+import { useTranslations } from 'next-intl';
 import { submitReviewAction } from '@/app/actions/reviewActions';
 
 export default function ReviewForm() {
+  const t = useTranslations('ReviewPage');
   const initialState = {
     success: false,
     message: '',
@@ -25,7 +27,7 @@ export default function ReviewForm() {
             <input
               type="text"
               name="firstName"
-              placeholder="First Name"
+              placeholder={t('firstNamePlaceholder')}
               defaultValue={state.formObject?.firstName || ''}
               maxLength={50}
               className="w-full rounded-lg py-3 px-4 border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none"
@@ -42,7 +44,7 @@ export default function ReviewForm() {
             <input
               type="text"
               name="lastName"
-              placeholder="Last Name"
+              placeholder={t('lastNamePlaceholder')}
               defaultValue={state.formObject?.lastName || ''}
               maxLength={50}
               className="w-full rounded-lg py-3 px-4 border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none"
@@ -59,7 +61,7 @@ export default function ReviewForm() {
         <div>
           <textarea
             name="text"
-            placeholder="Your Review"
+            placeholder={t('reviewPlaceholder')}
             defaultValue={state.formObject?.text || ''}
             maxLength={300}
             rows={4}
@@ -77,7 +79,7 @@ export default function ReviewForm() {
           whileTap={{ scale: 0.95 }}
           disabled={isPending}
         >
-          {isPending ? 'Submitting...' : 'Submit Review'}
+          {isPending ? t('submitting') : t('submitButton')}
         </motion.button>
         {state.message && (
           <p
@@ -85,9 +87,7 @@ export default function ReviewForm() {
               state.success ? 'text-green-600' : 'text-red-600'
             }`}
           >
-            {state.success
-              ? 'Review submitted successfully! It will appear after approval.'
-              : state.message}
+            {state.success ? t('successMessage') : state.message}
           </p>
         )}
       </form>

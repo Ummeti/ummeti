@@ -153,6 +153,15 @@
       }
     }
   },
+  "ReviewPage": {
+    "title": "Kirim Ulasan",
+    "firstNamePlaceholder": "Nama Depan",
+    "lastNamePlaceholder": "Nama Belakang",
+    "reviewPlaceholder": "Ulasan Anda",
+    "submitting": "Mengirim...",
+    "submitButton": "Kirim Ulasan",
+    "successMessage": "Ulasan berhasil dikirim!"
+  },
   "socials": {
     "title": "Ikuti Kami"
   },

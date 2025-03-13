@@ -153,6 +153,15 @@
       }
     }
   },
+  "ReviewPage": {
+    "title": "Submit a Review",
+    "firstNamePlaceholder": "First Name",
+    "lastNamePlaceholder": "Last Name",
+    "reviewPlaceholder": "Your Review",
+    "submitting": "Submitting...",
+    "submitButton": "Submit Review",
+    "successMessage": "Review submitted successfully!"
+  },
   "socials": {
     "title": "Follow Us"
   },

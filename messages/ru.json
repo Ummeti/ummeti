@@ -153,6 +153,15 @@
       }
     }
   },
+  "ReviewPage": {
+    "title": "Отправить отзыв",
+    "firstNamePlaceholder": "Имя",
+    "lastNamePlaceholder": "Фамилия",
+    "reviewPlaceholder": "Ваш отзыв",
+    "submitting": "Отправка...",
+    "submitButton": "Отправить отзыв",
+    "successMessage": "Отзыв успешно отправлен!"
+  },
   "socials": {
     "title": "Подписывайтесь на нас"
   },

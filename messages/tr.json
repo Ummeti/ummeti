@@ -153,6 +153,15 @@
       }
     }
   },
+  "ReviewPage": {
+    "title": "İnceleme Gönder",
+    "firstNamePlaceholder": "Ad",
+    "lastNamePlaceholder": "Soyad",
+    "reviewPlaceholder": "İncelemeniz",
+    "submitting": "Gönderiliyor...",
+    "submitButton": "İnceleme Gönder",
+    "successMessage": "İnceleme başarıyla gönderildi!"
+  },
   "socials": {
     "title": "Bizi Takip Edin"
   },
