@@ -154,7 +154,7 @@
     }
   },
   "ReviewPage": {
-    "title": "شارك رأيك",
+    "title": "إرسال مراجعة",
     "firstNamePlaceholder": "الاسم الأول",
     "lastNamePlaceholder": "اسم العائلة",
     "reviewPlaceholder": "مراجعتك",
