@@ -165,6 +165,10 @@
   "socials": {
     "title": "Bizi Takip Edin"
   },
+  "noItemsFallback": {
+    "heading": "Şimdilik Boş!",
+    "message": "Burada henüz bir şey yok. Daha sonra kontrol et!"
+  },
   "Footer": {
     "description": "Ummeti, İslam milletinin sorunlarını desteklemeyi ve Filistin davasını savunmayı amaçlayan küresel bir organizasyondur.",
     "aboutUs": "Hakkımızda",

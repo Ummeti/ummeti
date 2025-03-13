@@ -165,6 +165,10 @@
   "socials": {
     "title": "Follow Us"
   },
+  "noItemsFallback": {
+    "heading": "Empty for Now!",
+    "message": "Nothing here yet. Check back later!"
+  },
   "Footer": {
     "description": "Ummeti is a global organization aimed at supporting the issues of the Islamic nation and advocating for the Palestinian cause.",
     "aboutUs": "About Us",

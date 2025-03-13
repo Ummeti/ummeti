@@ -165,6 +165,10 @@
   "socials": {
     "title": "Ikuti Kami"
   },
+  "noItemsFallback": {
+    "heading": "Kosong untuk Sekarang!",
+    "message": "Belum ada apa-apa di sini. Periksa lagi nanti!"
+  },
   "Footer": {
     "description": "Ummeti adalah organisasi global yang bertujuan mendukung isu-isu umat Islam dan memperjuangkan perjuangan Palestina.",
     "aboutUs": "Tentang Kami",

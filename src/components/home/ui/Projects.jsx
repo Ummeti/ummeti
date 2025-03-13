@@ -3,6 +3,7 @@ import EmblaCarousel from '@/components/widgets/carousel/EmblaCarousel';
 import { motion } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import { useTranslations } from 'next-intl';
+import NoItemsFallback from './NoItemsFallback';
 
 export default function Projects({ projects }) {
   const t = useTranslations('ProjectsSection');
@@ -16,6 +17,7 @@ export default function Projects({ projects }) {
       <h2 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
         {t('title')}
       </h2>
+
       <motion.div
         className="px-4 sm:px-6 md:px-8 max-w-6xl mx-auto mt-8"
         initial="hidden"
@@ -28,13 +30,17 @@ export default function Projects({ projects }) {
           hidden: { opacity: 0 },
         }}
       >
-        <EmblaCarousel>
-          {projects.map((project) => (
-            <div key={project.id} className="embla__slide">
-              <ProjectCard project={project} />
-            </div>
-          ))}
-        </EmblaCarousel>
+        {projects.length < 1 ? (
+          <NoItemsFallback />
+        ) : (
+          <EmblaCarousel>
+            {projects.map((project) => (
+              <div key={project.id} className="embla__slide">
+                <ProjectCard project={project} />
+              </div>
+            ))}
+          </EmblaCarousel>
+        )}
       </motion.div>
     </motion.div>
   );
