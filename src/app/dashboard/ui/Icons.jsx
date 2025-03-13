@@ -2,13 +2,33 @@ export function RemoveIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="1.5rem"
-      height="1.5rem"
+      width="28px"
+      height="28px"
       viewBox="0 0 24 24"
     >
       <path
         fill="currentColor"
         d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"
+      ></path>
+    </svg>
+  );
+}
+
+export function ApproveIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="28px"
+      height="28px"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="m5 12l5 5L20 7"
       ></path>
     </svg>
   );
@@ -65,6 +85,22 @@ export function PostIcon() {
           d="m8.929 6.382l7.879 1.389m-8.574 2.55l7.879 1.39M7.54 14.26l4.924.869"
         ></path>
       </g>
+    </svg>
+  );
+}
+
+export function ReviewIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1.5rem"
+      height="1.5rem"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="currentColor"
+        d="M6 14h3.05l5-5q.225-.225.338-.513t.112-.562t-.125-.537t-.325-.488l-.9-.95q-.225-.225-.5-.337t-.575-.113q-.275 0-.562.113T11 5.95l-5 5zm7-6.075L12.075 7zM7.5 12.5v-.95l2.525-2.525l.5.45l.45.5L8.45 12.5zm3.025-3.025l.45.5l-.95-.95zm.65 4.525H18v-2h-4.825zM2 22V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18H6zm3.15-6H20V4H4v13.125zM4 16V4z"
+      />
     </svg>
   );
 }

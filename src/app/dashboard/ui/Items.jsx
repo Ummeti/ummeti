@@ -1,6 +1,6 @@
 import Item from './Item';
 
-export default function Items({ items, headers, removeAction }) {
+export default function Items({ items, headers, removeAction, approveAction }) {
   return (
     <section className="py-8 relative">
       <div className="max-w-6xl">
@@ -33,6 +33,7 @@ export default function Items({ items, headers, removeAction }) {
                       key={item.id}
                       item={item}
                       removeAction={removeAction}
+                      approveAction={approveAction}
                     />
                   ))}
                 </div>

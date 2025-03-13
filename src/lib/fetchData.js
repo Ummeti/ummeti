@@ -111,12 +111,35 @@ export const fetchContact = async () => {
   return contact;
 };
 
+export const fetchReviews = async () => {
+  const reviews = await prisma.review.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+  return reviews;
+};
+
+export const fetchApprovedReviews = async () => {
+  const approvedReviews = await prisma.review.findMany({
+    where: {
+      isApproved: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+  return approvedReviews;
+};
+
 export const fetchDashboardData = async () => {
-  const [projects, posts, categories] = await Promise.all([
+  const [projects, posts, categories, reviews, users] = await Promise.all([
     fetchProjects(),
     fetchPosts(),
+    fetchUsers(),
+    fetchReviews(),
     fetchCategories(),
   ]);
 
-  return { projects, posts, categories };
+  return { projects, posts, categories, reviews, users };
 };

@@ -5,7 +5,6 @@ import EmblaCarousel from '@/components/widgets/carousel/EmblaCarousel';
 export default function ProjectDetails({
   project: { title, description, raised, goal, images },
 }) {
-  if (!project) throw new Error('Failed to Delete Invoice');
   return (
     <div className="bg-white md:col-span-3 p-4 sm:p-6 md:p-12">
       <div className="relative aspect-video rounded-lg overflow-hidden mt-4">

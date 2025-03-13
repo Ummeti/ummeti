@@ -1,15 +1,25 @@
 import Items from './ui/Items';
 import Tabs from './ui/Tabs';
-import { CategoryIcon, PostIcon, ProjectIcon, UserIcon } from './ui/Icons';
+import {
+  CategoryIcon,
+  PostIcon,
+  ProjectIcon,
+  ReviewIcon,
+  UserIcon,
+} from './ui/Icons';
 import { removeProjectAction } from '@/app/actions/projectActions';
 import { removePostAction } from '@/app/actions/postActions';
 import { removeCategoryAction } from '../actions/categoryActions';
 import { fetchDashboardData, fetchUsers } from '@/lib/fetchData';
 import { removeUserAction } from '../actions/userActions';
+import {
+  approveReviewAction,
+  removeReviewAction,
+} from '../actions/reviewActions';
 
 export default async function Dashboard() {
-  const { projects, posts, categories } = await fetchDashboardData();
-  const users = await fetchUsers();
+  const { projects, posts, categories, reviews, users } =
+    await fetchDashboardData();
 
   const tabConfig = {
     projects: {
@@ -23,6 +33,11 @@ export default async function Dashboard() {
     categories: {
       headers: ['Categories', 'Category'],
       removeAction: removeCategoryAction,
+    },
+    reviews: {
+      headers: ['Reviews', 'Review'],
+      removeAction: removeReviewAction,
+      approveAction: approveReviewAction,
     },
     users: {
       headers: ['Users', 'User'],
@@ -48,6 +63,12 @@ export default async function Dashboard() {
       label: 'Categories',
       icon: <CategoryIcon />,
       content: <Items items={categories} {...tabConfig.categories} />,
+    },
+    {
+      key: 'reviews',
+      label: 'Reviews',
+      icon: <ReviewIcon />,
+      content: <Items items={reviews} {...tabConfig.reviews} />,
     },
     {
       key: 'users',

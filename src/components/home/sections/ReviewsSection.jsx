@@ -1,4 +1,10 @@
-// import Rate from '../widgets/Rate';
+import { fetchApprovedReviews } from '@/lib/fetchData';
+import Reviews from '../ui/Reviews';
+
+export default async function ReviewsSection() {
+  const reviews = await fetchApprovedReviews();
+  return <Reviews reviews={reviews} />;
+}
 
 // export default function Testimonials() {
 //   return (
@@ -124,49 +130,3 @@
 //     </section>
 //   );
 // }
-'use client';
-import { motion } from 'framer-motion';
-import Rate from '../../widgets/Rate';
-import EmblaCarousel from '../../widgets/carousel/EmblaCarousel';
-import { useTranslations } from 'next-intl';
-
-export default function TestimonialsSection() {
-  const t = useTranslations('TestimonialsSection');
-  return (
-    <motion.section
-      className="bg-white mt-20"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-          {t('title')}
-        </h2>
-        <div className="mt-8">
-          <EmblaCarousel>
-            {[...Array(9)].map((_, i) => (
-              <div key={i} className="embla__slide">
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                >
-                  <blockquote className="rounded-lg bg-second-lightest p-6 shadow-sm sm:p-8">
-                    <Rate />
-                    <p className="mt-4 text-gray-700">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Similique quae consequatur quia labore minus accusamus
-                      exercitationem ipsam voluptates fuga officia?
-                    </p>
-                  </blockquote>
-                </motion.div>
-              </div>
-            ))}
-          </EmblaCarousel>
-        </div>
-      </div>
-    </motion.section>
-  );
-}

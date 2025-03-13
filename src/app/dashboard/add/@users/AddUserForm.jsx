@@ -30,7 +30,7 @@ export default function AddUserForm() {
           <input
             type="email"
             name="email"
-            placeholder="email"
+            placeholder="Email"
             className="w-full rounded-lg py-3 px-4 text-gray-800 text-sm border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none"
             disabled={isPending}
             defaultValue={state.formObject?.email ?? ''}
