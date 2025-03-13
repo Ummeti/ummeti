@@ -136,9 +136,9 @@ export const fetchDashboardData = async () => {
   const [projects, posts, categories, reviews, users] = await Promise.all([
     fetchProjects(),
     fetchPosts(),
-    fetchUsers(),
-    fetchReviews(),
     fetchCategories(),
+    fetchReviews(),
+    fetchUsers(),
   ]);
 
   return { projects, posts, categories, reviews, users };

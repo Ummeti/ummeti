@@ -25,20 +25,27 @@ export async function removeCategoryAction(id) {
       };
     }
 
-    await prisma.category.delete({
-      where: { id },
-    });
+    await prisma.$transaction([
+      prisma.project.deleteMany({
+        where: {
+          categoryId: id,
+        },
+      }),
+      prisma.category.delete({
+        where: { id },
+      }),
+    ]);
 
     revalidatePath('/dashboard');
     return {
       success: true,
-      message: 'Category deleted successfully',
+      message: 'Category and associated projects deleted successfully',
     };
   } catch (error) {
-    console.error('Error removing category:', error);
+    console.error('Error removing category and projects:', error);
     return {
       success: false,
-      message: 'Failed to delete category. Please try again.',
+      message: 'Failed to delete category and projects. Please try again.',
     };
   }
 }
