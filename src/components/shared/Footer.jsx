@@ -40,7 +40,7 @@ export default function Footer() {
                 <li>
                   <Link
                     className="text-white transition hover:text-white/75"
-                    href="#"
+                    href="/about"
                   >
                     {t('aboutUsItems.story')}
                   </Link>
@@ -94,7 +94,7 @@ export default function Footer() {
                 <li>
                   <Link
                     className="text-white transition hover:text-white/75"
-                    href="#"
+                    href="/about"
                   >
                     {t('helpfulLinksItems.faqs')}
                   </Link>

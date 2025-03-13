@@ -72,7 +72,7 @@
   },
   "VolunteerSection": {
     "title": "Volunteer Now",
-    "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, nulla sapiente. Temporibus aut, aspernatur omnis iste inventore nulla neque? Saepe suscipit sequi qui ex doloremque sunt obcaecati, deserunt quisquam voluptate!",
+    "description": "Join us in making a difference by supporting those in need. Whether through volunteering, donations, or advocacy, your efforts can help transform lives.",
     "form": {
       "name": "Name",
       "subject": "Subject",

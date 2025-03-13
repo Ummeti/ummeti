@@ -49,7 +49,9 @@ export default async function ContactInfo({ color }) {
             />
           </svg>
 
-          <span className={color}>{contact?.phone}</span>
+          <span className={color} dir="ltr">
+            {contact?.phone}
+          </span>
         </Link>
       </li>
 
