@@ -8,7 +8,8 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
 const UserSchema = z.object({
-  email: z.string().email(),
+  name: z.string().min(1, 'Name is required').max(255),
+  email: z.string().email('Invalid email address'),
 });
 
 export async function addUserAction(prevState, formData) {
@@ -21,6 +22,7 @@ export async function addUserAction(prevState, formData) {
   }
 
   const formObject = {
+    name: formData.get('name'),
     email: formData.get('email'),
   };
 
@@ -36,7 +38,7 @@ export async function addUserAction(prevState, formData) {
 
   try {
     const validatedData = parsed.data;
-    await createUser(validatedData.email);
+    await createUser(validatedData);
 
     revalidatePath('/dashboard');
     return {
@@ -53,9 +55,9 @@ export async function addUserAction(prevState, formData) {
   }
 }
 
-async function createUser(email) {
+async function createUser({ name, email }) {
   return prisma.user.create({
-    data: { email },
+    data: { name, email },
   });
 }
 
@@ -187,6 +189,8 @@ async function deleteProfilePicture(key) {
   await s3Client.send(command);
 }
 
+const RemoveUserSchema = UserSchema.omit({ name: true });
+
 export async function removeUserAction(email) {
   const session = await auth();
   if (!session?.user) {
@@ -195,8 +199,7 @@ export async function removeUserAction(email) {
       message: 'Unauthorized: You must be logged in to remove a user',
     };
   }
-
-  const parsed = UserSchema.safeParse({ email });
+  const parsed = RemoveUserSchema.safeParse({ email });
 
   if (!parsed.success) {
     return {
