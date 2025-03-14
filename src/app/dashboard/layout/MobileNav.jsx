@@ -39,14 +39,14 @@ export default function MobileNav() {
             <ContactIcon />
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
             className="flex items-center justify-center w-12 h-12 rounded hover:bg-main hover:text-white"
             href="/dashboard/settings"
           >
             <SettingsIcon />
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link
             className="flex items-center justify-center w-12 h-12 rounded hover:bg-main hover:text-white"

@@ -22,7 +22,7 @@ export default function LargeNav() {
       { href: '/dashboard/add', label: 'Add Item', icon: AddIcon },
       { href: '/dashboard/contact', label: 'Edit Contact', icon: ContactIcon },
       { href: '/dashboard/stats', label: 'Edit Stats', icon: StatsIcon },
-      { href: '/dashboard/settings', label: 'Settings', icon: SettingsIcon },
+      // { href: '/dashboard/settings', label: 'Settings', icon: SettingsIcon },
       { href: '/dashboard/profile', label: 'My Profile', icon: ProfileIcon },
     ],
     []
