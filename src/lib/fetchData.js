@@ -132,6 +132,11 @@ export const fetchApprovedReviews = async () => {
   return approvedReviews;
 };
 
+export const fetchStats = async () => {
+  const stats = await prisma.stats.findFirst();
+  return stats;
+};
+
 export const fetchDashboardData = async () => {
   const [projects, posts, categories, reviews, users] = await Promise.all([
     fetchProjects(),

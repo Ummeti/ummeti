@@ -69,6 +69,26 @@ export function ContactIcon() {
   );
 }
 
+export function StatsIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1.5rem"
+      height="1.5rem"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M4 4v15a1 1 0 0 0 1 1h15M8 16l2.5-5.5l3 3L17.273 7L20 9.667"
+      ></path>
+    </svg>
+  );
+}
+
 export function ProfileIcon() {
   return (
     <svg
