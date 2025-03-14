@@ -27,10 +27,8 @@ export async function updateStatsAction(prevState, formData) {
     isAuto: formData.get('isAuto') === 'true',
   };
 
-  console.log(formObject);
   const parsed = StatsUpdateSchema.safeParse(formObject);
   if (!parsed.success) {
-    console.log(parsed.error.flatten());
     return {
       success: false,
       errors: parsed.error.flatten().fieldErrors,

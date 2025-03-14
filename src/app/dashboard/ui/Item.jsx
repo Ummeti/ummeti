@@ -1,8 +1,14 @@
 import Image from 'next/image';
 import ApproveButton from './ApproveButton';
 import RemoveButton from './RemoveButton';
+import ToggleProjectForm from './ToggleItemMain';
 
-export default function Item({ item, removeAction, approveAction }) {
+export default function Item({
+  item,
+  removeAction,
+  approveAction,
+  ToggleItemMainAction,
+}) {
   return (
     <div className="grid grid-cols-12 w-full px-6 pb-5 justify-start items-center md:gap-8 gap-3 border-b border-gray-300">
       <div className="lg:col-span-4 md:col-span-5 col-span-12 justify-start items-center md:gap-6 gap-3 md:pb-5 flex md:flex-row flex-col">
@@ -25,11 +31,20 @@ export default function Item({ item, removeAction, approveAction }) {
         </div>
       </div>
       <div className="lg:col-span-8 md:col-span-7 col-span-12 w-full justify-start items-center md:gap-8 gap-3 flex md:flex-row flex-col">
+        {item?.hasOwnProperty('isMain') && (
+          <div className="md:col-span-2 col-span-12 w-full text-center text-gray-500 text-lg font-medium leading-8">
+            <ToggleProjectForm
+              isMain={item?.isMain}
+              id={item?.id}
+              ToggleItemMainAction={ToggleItemMainAction}
+            />
+          </div>
+        )}
         {item?.goal && (
           <>
-            <h5 className="md:col-span-2 col-span-12 w-full text-center text-gray-500 text-lg font-medium leading-8">
+            <p className="md:col-span-2 col-span-12 w-full text-center text-gray-500 text-lg font-medium leading-8">
               ${item?.raised}
-            </h5>
+            </p>
             <p className="md:col-span-2 col-span-12 w-full focus:outline-none text-center text-gray-500 text-lg font-medium leading-8">
               ${item?.goal}
             </p>

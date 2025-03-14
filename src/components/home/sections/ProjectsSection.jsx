@@ -6,10 +6,11 @@ export default async function ProjectsSection() {
   noStore();
 
   const projects = await fetchProjects();
+  const mainProjects = projects.filter((project) => project.isMain);
 
   return (
     <section>
-      <Projects projects={projects} />
+      <Projects projects={mainProjects} />
     </section>
   );
 }

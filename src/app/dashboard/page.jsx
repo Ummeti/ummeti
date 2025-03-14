@@ -9,8 +9,14 @@ import {
   UserIcon,
 } from './ui/Icons';
 import { fetchDashboardData } from '@/lib/fetchData';
-import { removeProjectAction } from '@/app/actions/projectActions';
-import { removePostAction } from '@/app/actions/postActions';
+import {
+  removeProjectAction,
+  ToggleProjectMainAction,
+} from '@/app/actions/projectActions';
+import {
+  removePostAction,
+  TogglePostMainAction,
+} from '@/app/actions/postActions';
 import { removeCategoryAction } from '@/app/actions/categoryActions';
 import { removeUserAction } from '@/app/actions/userActions';
 import {
@@ -20,10 +26,15 @@ import {
 
 const tabConfig = {
   projects: {
-    headers: ['Projects', 'Project', 'Raised', 'Goal'],
+    headers: ['Projects', 'Project', 'Main', 'Raised', 'Goal'],
     removeAction: removeProjectAction,
+    ToggleItemMainAction: ToggleProjectMainAction,
   },
-  posts: { headers: ['Posts', 'Post'], removeAction: removePostAction },
+  posts: {
+    headers: ['Posts', 'Post', 'Main'],
+    removeAction: removePostAction,
+    ToggleItemMainAction: TogglePostMainAction,
+  },
   categories: {
     headers: ['Categories', 'Category'],
     removeAction: removeCategoryAction,

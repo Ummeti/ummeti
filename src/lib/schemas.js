@@ -36,6 +36,11 @@ export const ProjectSchema = z.object({
     ),
 });
 
+export const ToggleItemMainSchema = z.object({
+  id: z.string().min(1, 'Project ID is required'),
+  isMain: z.boolean(),
+});
+
 export const ProjectIdSchema = z.string().min(1, 'Project ID is required');
 
 export const PostSchema = z.object({

@@ -3,7 +3,12 @@
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/client';
 import s3Client from '@/lib/s3Client';
-import { ProjectSchema, ProjectIdSchema } from '@/lib/schemas';
+import {
+  ProjectSchema,
+  ProjectIdSchema,
+  ToggleProjectMainSchema,
+  ToggleItemMainSchema,
+} from '@/lib/schemas';
 import { slugify } from '@/lib/utils';
 import { PutObjectCommand, DeleteObjectsCommand } from '@aws-sdk/client-s3';
 import { revalidatePath } from 'next/cache';
@@ -116,6 +121,68 @@ async function generateUniqueSlug(title) {
   }
 
   return finalSlug;
+}
+
+export async function ToggleProjectMainAction(prevState, formData) {
+  const session = await auth();
+  if (!session?.user) {
+    return {
+      success: false,
+      message: 'Unauthorized: You must be logged in to toggle project status',
+    };
+  }
+
+  const formObject = {
+    id: formData.get('id'),
+    isMain: formData.get('isMain') === 'true',
+  };
+
+  const parsed = ToggleItemMainSchema.safeParse(formObject);
+  if (!parsed.success) {
+    return {
+      success: false,
+      errors: parsed.error.flatten().fieldErrors,
+      formObject,
+      message: 'Validation failed',
+    };
+  }
+
+  try {
+    const validatedData = parsed.data;
+
+    const project = await prisma.project.findUnique({
+      where: { id: validatedData.id },
+    });
+
+    if (!project) {
+      return {
+        success: false,
+        message: 'Project not found',
+        formObject,
+      };
+    }
+
+    await prisma.project.update({
+      where: { id: validatedData.id },
+      data: { isMain: validatedData.isMain },
+    });
+
+    revalidatePath('/dashboard');
+
+    return {
+      success: true,
+      message: validatedData.isMain
+        ? 'Project will be displayed on main page!'
+        : "Project won't be displayed on main page!",
+    };
+  } catch (error) {
+    console.error('Error toggling project status:', error);
+    return {
+      success: false,
+      message: 'Failed to toggle project status. Please try again.',
+      formObject,
+    };
+  }
 }
 
 export async function removeProjectAction(id) {

@@ -1,5 +1,6 @@
 'use client';
 
+import Toggle from '../ui/Toggle';
 import { motion } from 'framer-motion';
 import { useActionState, useState } from 'react';
 import { updateStatsAction } from '@/app/actions/updateStatsAction';
@@ -48,25 +49,11 @@ export default function UpdateStatsForm({ stats }) {
             </label>
             <div className="flex items-center gap-2">
               <span className="text-xs text-gray-500">Auto Count</span>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={isAuto}
-                  onChange={handleToggleChange}
-                  className="sr-only peer"
-                  disabled={isPending}
-                />
-                <div
-                  className={`w-11 h-6 rounded-full peer transition-colors duration-200 ease-in-out ${
-                    isAuto ? 'bg-main' : 'bg-gray-300'
-                  }`}
-                ></div>
-                <span
-                  className={`absolute left-1 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full transition-transform duration-200 ease-in-out ${
-                    isAuto ? 'translate-x-5' : 'translate-x-0'
-                  }`}
-                ></span>
-              </label>
+              <Toggle
+                isChecked={isAuto}
+                onChange={handleToggleChange}
+                isPending={isPending}
+              />
             </div>
           </div>
 
