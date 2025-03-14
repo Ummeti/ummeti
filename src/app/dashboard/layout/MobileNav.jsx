@@ -6,6 +6,7 @@ import {
   DashboardIcon,
   ProfileIcon,
   SettingsIcon,
+  StatsIcon,
 } from './Icons';
 
 export default function MobileNav() {
@@ -17,7 +18,7 @@ export default function MobileNav() {
       <ul className="flex flex-col items-center px-2 space-y-2 border-t border-gray-200">
         <li>
           <Link
-            className="flex items-center justify-center mt-2 w-12 h-12 rounded bg-main text-white"
+            className="flex items-center justify-center mt-2 w-12 h-12 rounded hover:bg-main hover:text-white"
             href="/dashboard"
           >
             <DashboardIcon />
@@ -37,6 +38,14 @@ export default function MobileNav() {
             href="/dashboard/contact"
           >
             <ContactIcon />
+          </Link>
+        </li>
+        <li>
+          <Link
+            className="flex items-center justify-center w-12 h-12 rounded hover:bg-main hover:text-white"
+            href="/dashboard/stats"
+          >
+            <StatsIcon />
           </Link>
         </li>
         {/* <li>

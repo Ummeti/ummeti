@@ -5,18 +5,10 @@ import { auth } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 
 const StatsUpdateSchema = z.object({
-  projects: z
-    .string()
-    .transform(Number)
-    .pipe(z.number().min(1, 'Minimum 1').max(1000000, 'Maximum 1,000,000')),
-  supporters: z
-    .string()
-    .transform(Number)
-    .pipe(z.number().min(1, 'Minimum 1').max(1000000, 'Maximum 1,000,000')),
-  served: z
-    .string()
-    .transform(Number)
-    .pipe(z.number().min(1, 'Minimum 1').max(1000000, 'Maximum 1,000,000')),
+  projects: z.number().max(1000000),
+  supporters: z.number().max(1000000),
+  served: z.number().max(1000000),
+  isAuto: z.boolean(),
 });
 
 export async function updateStatsAction(prevState, formData) {
@@ -29,13 +21,16 @@ export async function updateStatsAction(prevState, formData) {
   }
 
   const formObject = {
-    projects: formData.get('projects'),
-    supporters: formData.get('supporters'),
-    served: formData.get('served'),
+    projects: Number(formData.get('projects')),
+    supporters: Number(formData.get('supporters')),
+    served: Number(formData.get('served')),
+    isAuto: formData.get('isAuto') === 'true',
   };
 
+  console.log(formObject);
   const parsed = StatsUpdateSchema.safeParse(formObject);
   if (!parsed.success) {
+    console.log(parsed.error.flatten());
     return {
       success: false,
       errors: parsed.error.flatten().fieldErrors,
@@ -46,32 +41,38 @@ export async function updateStatsAction(prevState, formData) {
 
   try {
     const validatedData = parsed.data;
-
     const existingStats = await prisma.stats.findFirst();
+
+    const statsData = {
+      supporters: validatedData.supporters,
+      served: validatedData.served,
+      isAuto: validatedData.isAuto || false,
+    };
+
+    if (!statsData.isAuto && validatedData.projects) {
+      statsData.projects = validatedData.projects;
+    } else if (!existingStats && !statsData.isAuto) {
+      statsData.projects = 0;
+    }
 
     if (existingStats) {
       await prisma.stats.update({
         where: { id: existingStats.id },
-        data: {
-          projects: validatedData.projects,
-          supporters: validatedData.supporters,
-          served: validatedData.served,
-        },
+        data: statsData,
       });
     } else {
       await prisma.stats.create({
-        data: {
-          projects: validatedData.projects,
-          supporters: validatedData.supporters,
-          served: validatedData.served,
-        },
+        data: statsData,
       });
     }
 
     revalidatePath('/dashboard');
+    revalidatePath('/');
     return {
       success: true,
-      message: 'Stats updated successfully!',
+      message: validatedData.isAuto
+        ? 'Stats updated to use auto project count!'
+        : 'Stats updated with manual project count!',
     };
   } catch (error) {
     console.error('Error updating stats:', error);

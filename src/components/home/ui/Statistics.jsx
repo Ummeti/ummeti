@@ -4,11 +4,14 @@ import { motion } from 'framer-motion';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 
-export default function Statistics({ stats }) {
+export default function Statistics({ stats, projectsCount }) {
   const t = useTranslations('StatisticsSection');
 
   const statsList = [
-    { label: t('projects'), value: stats?.projects },
+    {
+      label: t('projects'),
+      value: stats.isAuto && projectsCount ? projectsCount : stats?.projects,
+    },
     { label: t('supporters'), value: stats?.supporters },
     { label: t('served'), value: stats?.served },
   ];

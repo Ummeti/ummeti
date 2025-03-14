@@ -1,11 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { updateStatsAction } from '@/app/actions/updateStatsAction';
 
-export default function UpdateStatsForm({ stats, projectsCount }) {
+export default function UpdateStatsForm({ stats }) {
   const initialState = {
     success: false,
     message: '',
@@ -18,63 +17,105 @@ export default function UpdateStatsForm({ stats, projectsCount }) {
     initialState
   );
 
-  // Manage local state for projects count
-  const [projects, setProjects] = useState(
-    state.formObject?.projects || stats?.projects || projectsCount
-  );
+  const [isAuto, setIsAuto] = useState(stats?.isAuto ?? false);
+
+  const handleToggleChange = (e) => {
+    setIsAuto(e.target.checked);
+  };
+
+  const handleSubmit = async (formData) => {
+    formData.set('isAuto', isAuto ? 'true' : 'false');
+    return formAction(formData);
+  };
 
   return (
-    <div className="py-8">
-      <h2 className="text-center text-gray-900 text-3xl font-bold">
+    <div className="py-8 px-4 sm:px-6 lg:px-8">
+      <h2 className="text-center text-gray-900 text-3xl font-bold mb-6">
         Update Stats
       </h2>
       <form
-        action={formAction}
-        className="mt-8 space-y-4 max-w-xl mx-auto bg-white p-6 shadow-lg rounded-lg"
+        action={handleSubmit}
+        className="mt-8 space-y-6 max-w-xl mx-auto bg-white p-6 shadow-lg rounded-xl border border-gray-200"
         noValidate
       >
-        {/* Projects */}
         <div className="relative">
-          <input
-            type="number"
-            name="projects"
-            placeholder="Number of Projects"
-            value={projects}
-            onChange={(e) => setProjects(e.target.value)}
-            className="w-full rounded-lg py-3 px-4 border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none 
-            appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none 
-            [-moz-appearance:textfield]"
-            disabled={isPending}
-            min="1"
-            max="1000000"
-            required
-          />
+          <div className="flex items-center justify-between mb-1">
+            <label
+              htmlFor="projects"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Number of Projects
+            </label>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-gray-500">Auto Count</span>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={isAuto}
+                  onChange={handleToggleChange}
+                  className="sr-only peer"
+                  disabled={isPending}
+                />
+                <div
+                  className={`w-11 h-6 rounded-full peer transition-colors duration-200 ease-in-out ${
+                    isAuto ? 'bg-main' : 'bg-gray-300'
+                  }`}
+                ></div>
+                <span
+                  className={`absolute left-1 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full transition-transform duration-200 ease-in-out ${
+                    isAuto ? 'translate-x-5' : 'translate-x-0'
+                  }`}
+                ></span>
+              </label>
+            </div>
+          </div>
+
+          {isAuto && (
+            <div className="flex items-center gap-2 mb-2 text-xs text-main bg-gray-50 p-2 rounded-md">
+              <div>!</div>
+              <span>
+                Projects count will be automatically fetched from the database
+              </span>
+            </div>
+          )}
+
+          <div className="relative">
+            <input
+              type="number"
+              name="projects"
+              id="projects"
+              placeholder={
+                isAuto ? 'Auto-fetched from database' : 'Enter custom count'
+              }
+              defaultValue={state.formObject?.projects || stats?.projects}
+              className={`w-full rounded-lg py-3 pl-4 pr-4 border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+                isAuto
+                  ? 'bg-gray-100 text-gray-500 cursor-not-allowed'
+                  : 'bg-white text-gray-900'
+              }`}
+              disabled={isPending || isAuto}
+            />
+          </div>
           {state.errors?.projects && (
             <p className="text-red-500 text-sm mt-1">{state.errors.projects}</p>
           )}
-          {/* Reset Button */}
-          <button
-            type="button"
-            onClick={() => setProjects(projectsCount)}
-            className="absolute right-4 top-3 text-sm text-main-dark disabled:text-gray-400"
-            disabled={projects === projectsCount}
-          >
-            Reset
-          </button>
         </div>
 
-        {/* Supporters */}
         <div>
+          <label
+            htmlFor="supporters"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
+            Number of Supporters
+          </label>
           <input
             type="number"
             name="supporters"
+            id="supporters"
             placeholder="Number of Supporters"
             defaultValue={state.formObject?.supporters || stats?.supporters}
-            className="w-full rounded-lg py-3 px-4 border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none"
+            className="w-full rounded-lg py-3 px-4 border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none transition-colors disabled:cursor-not-allowed"
             disabled={isPending}
-            min="1"
-            max="1000000"
-            required
           />
           {state.errors?.supporters && (
             <p className="text-red-500 text-sm mt-1">
@@ -83,35 +124,36 @@ export default function UpdateStatsForm({ stats, projectsCount }) {
           )}
         </div>
 
-        {/* Served */}
         <div>
+          <label
+            htmlFor="served"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
+            Number of Served
+          </label>
           <input
             type="number"
             name="served"
-            placeholder="Number of People"
+            id="served"
+            placeholder="Number of People Served"
             defaultValue={state.formObject?.served || stats?.served}
-            className="w-full rounded-lg py-3 px-4 border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none"
+            className="w-full rounded-lg py-3 px-4 border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none transition-colors disabled:cursor-not-allowed"
             disabled={isPending}
-            min="1"
-            max="1000000"
-            required
           />
           {state.errors?.served && (
             <p className="text-red-500 text-sm mt-1">{state.errors.served}</p>
           )}
         </div>
 
-        {/* Submit Button */}
         <motion.button
           type="submit"
-          className="w-full text-white bg-main hover:bg-main-lighter rounded-lg px-4 py-3 flex items-center justify-center"
+          className="w-full text-white bg-main hover:bg-main-lighter rounded-lg px-4 py-3 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           whileTap={{ scale: 0.95 }}
           disabled={isPending}
         >
           {isPending ? 'Updating...' : 'Update Stats'}
         </motion.button>
 
-        {/* Success/Error Message */}
         {state.message && (
           <p
             className={`text-sm mt-4 text-center ${

@@ -89,6 +89,7 @@ model Stats {
   projects   Int
   supporters Int
   served     Int
+  isAuto     Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
