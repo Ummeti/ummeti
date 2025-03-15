@@ -20,10 +20,12 @@ export async function addPostAction(prevState, formData) {
   const formObject = {
     title: formData.get('title'),
     description: formData.get('description'),
+    isMain: formData.get('isMain') === 'true',
     images: formData.getAll('images'),
   };
 
   const parsed = PostSchema.safeParse(formObject);
+  console.log(parsed.data);
 
   if (!parsed.success) {
     return {
@@ -60,6 +62,7 @@ async function createPost(data, userId) {
     data: {
       title: data.title,
       description: data.description,
+      isMain: data.isMain,
       slug,
       userId,
       images: imageKeys,
@@ -102,6 +105,7 @@ async function generateUniqueSlug(title) {
 }
 
 export async function TogglePostMainAction(prevState, formData) {
+  console.log(formData);
   const session = await auth();
   if (!session?.user) {
     return {

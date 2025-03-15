@@ -6,7 +6,6 @@ import s3Client from '@/lib/s3Client';
 import {
   ProjectSchema,
   ProjectIdSchema,
-  ToggleProjectMainSchema,
   ToggleItemMainSchema,
 } from '@/lib/schemas';
 import { slugify } from '@/lib/utils';
@@ -25,6 +24,7 @@ export async function addProjectAction(prevState, formData) {
   const formObject = {
     title: String(formData.get('title') || ''),
     description: String(formData.get('description') || ''),
+    isMain: formData.get('isMain') === 'true',
     category: String(formData.get('category') || ''),
     raised: Number.parseFloat(formData.get('raised')) || 0,
     goal: Number.parseFloat(formData.get('goal')) || 0,
@@ -136,6 +136,8 @@ export async function ToggleProjectMainAction(prevState, formData) {
     id: formData.get('id'),
     isMain: formData.get('isMain') === 'true',
   };
+
+  console.log(formObject);
 
   const parsed = ToggleItemMainSchema.safeParse(formObject);
   if (!parsed.success) {

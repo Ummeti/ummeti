@@ -4,6 +4,7 @@ import Toggle from '../ui/Toggle';
 import { motion } from 'framer-motion';
 import { useActionState, useState } from 'react';
 import { updateStatsAction } from '@/app/actions/updateStatsAction';
+import { CautionIcon } from '../ui/Icons';
 
 export default function UpdateStatsForm({ stats }) {
   const initialState = {
@@ -39,7 +40,7 @@ export default function UpdateStatsForm({ stats }) {
         className="mt-8 space-y-6 max-w-xl mx-auto bg-white p-6 shadow-lg rounded-xl border border-gray-200"
         noValidate
       >
-        <div className="relative">
+        <div>
           <div className="flex items-center justify-between mb-1">
             <label
               htmlFor="projects"
@@ -59,30 +60,28 @@ export default function UpdateStatsForm({ stats }) {
 
           {isAuto && (
             <div className="flex items-center gap-2 mb-2 text-xs text-main bg-gray-50 p-2 rounded-md">
-              <div>!</div>
+              <CautionIcon />
               <span>
                 Projects count will be automatically fetched from the database
               </span>
             </div>
           )}
 
-          <div className="relative">
-            <input
-              type="number"
-              name="projects"
-              id="projects"
-              placeholder={
-                isAuto ? 'Auto-fetched from database' : 'Enter custom count'
-              }
-              defaultValue={state.formObject?.projects || stats?.projects}
-              className={`w-full rounded-lg py-3 pl-4 pr-4 border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
-                isAuto
-                  ? 'bg-gray-100 text-gray-500 cursor-not-allowed'
-                  : 'bg-white text-gray-900'
-              }`}
-              disabled={isPending || isAuto}
-            />
-          </div>
+          <input
+            type="number"
+            name="projects"
+            id="projects"
+            placeholder={
+              isAuto ? 'Auto-fetched from database' : 'Enter custom count'
+            }
+            defaultValue={state.formObject?.projects || stats?.projects}
+            className={`w-full rounded-lg py-3 pl-4 pr-4 border border-gray-300 focus:ring-2 focus:ring-main focus:outline-none transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${
+              isAuto
+                ? 'bg-gray-100 text-gray-500 cursor-not-allowed'
+                : 'bg-white text-gray-900'
+            }`}
+            disabled={isPending || isAuto}
+          />
           {state.errors?.projects && (
             <p className="text-red-500 text-sm mt-1">{state.errors.projects}</p>
           )}

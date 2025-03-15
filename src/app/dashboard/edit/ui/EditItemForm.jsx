@@ -4,11 +4,16 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { addProjectAction } from '@/app/actions/projectActions';
-import { CautionIcon, RemoveIcon, UploadIcon } from '../../ui/Icons';
+import {
+  CategoryIcon,
+  CautionIcon,
+  RemoveIcon,
+  UploadIcon,
+} from '../../ui/Icons';
 import { useActionState } from 'react';
 import Toggle from '../../ui/Toggle';
 
-export default function AddProjectForm({ categories }) {
+export default function EditItemForm({ categories }) {
   const [images, setImages] = useState([]);
   const [showNewCategory, setShowNewCategory] = useState(false);
 
@@ -138,11 +143,12 @@ export default function AddProjectForm({ categories }) {
                 disabled={isPending}
               >
                 <option value="">Select a category</option>
-                {categories?.map((cat) => (
-                  <option key={cat.id} value={cat.title}>
-                    {cat.title}
-                  </option>
-                ))}
+                {categories &&
+                  Categories?.map((cat) => (
+                    <option key={cat.id} value={cat.title}>
+                      {cat.title}
+                    </option>
+                  ))}
                 <option value="new">Add new category</option>
               </select>
             </div>

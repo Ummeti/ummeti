@@ -16,6 +16,7 @@ const CategorySchema = z
 export const ProjectSchema = z.object({
   title: z.string().min(1, 'Title is required').max(100),
   description: z.string().min(1, 'Description is required'),
+  isMain: z.boolean(),
   category: CategorySchema,
   raised: z.number().min(0, 'Raised amount must be 0 or greater'),
   goal: z.number().min(1, 'Goal must be greater than 0'),
@@ -49,6 +50,7 @@ export const PostSchema = z.object({
     .min(1, 'Title is required')
     .max(100, 'Title must be 100 characters or less'),
   description: z.string().min(1, 'Description is required'),
+  isMain: z.boolean(),
   images: z
     .array(z.instanceof(File))
     .min(1, 'At least one image is required')

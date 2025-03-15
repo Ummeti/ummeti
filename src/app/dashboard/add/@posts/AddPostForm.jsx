@@ -2,9 +2,10 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { RemoveIcon, UploadIcon } from '../../ui/Icons';
+import { CautionIcon, RemoveIcon, UploadIcon } from '../../ui/Icons';
 import { addPostAction } from '@/app/actions/postActions';
 import { useActionState } from 'react';
+import Toggle from '../../ui/Toggle';
 
 export default function AddPostForm() {
   const [images, setImages] = useState([]);
@@ -20,6 +21,8 @@ export default function AddPostForm() {
     addPostAction,
     initialState
   );
+
+  const [isMain, setIsMain] = useState(false);
 
   useEffect(() => {
     if (state.success) {
@@ -46,6 +49,7 @@ export default function AddPostForm() {
 
     submitData.append('title', formData.get('title'));
     submitData.append('description', formData.get('description'));
+    submitData.append('isMain', isMain);
 
     images.forEach((image) => {
       submitData.append(`images`, image.file);
@@ -97,6 +101,27 @@ export default function AddPostForm() {
             </p>
           )}
         </div>
+
+        <div className="flex items-center justify-between mb-1">
+          <label
+            htmlFor="projects"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Show on Homepage
+          </label>
+          <Toggle
+            isChecked={isMain}
+            onChange={() => setIsMain((prevState) => !prevState)}
+            isPending={isPending}
+          />
+        </div>
+
+        {isMain && (
+          <div className="flex items-center gap-2 mb-2 text-xs text-main bg-gray-50 p-2 rounded-md">
+            <CautionIcon />
+            <span>Post will be visible on the homepage</span>
+          </div>
+        )}
 
         <div>
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center bg-gray-100">
