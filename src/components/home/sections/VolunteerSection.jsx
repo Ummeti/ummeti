@@ -110,7 +110,6 @@ export default function VolunteerSection({ children }) {
             <Turnstile
               siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
               onSuccess={(token) => setToken(token)}
-              theme="light"
             />
 
             <input type="hidden" name="cf-turnstile-response" value={token} />
