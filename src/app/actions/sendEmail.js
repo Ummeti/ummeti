@@ -2,13 +2,6 @@
 
 import nodemailer from 'nodemailer';
 import { EmailSchema } from '@/lib/schemas';
-import { RateLimiterMemory } from 'rate-limiter-flexible';
-
-// Initialize the rate limiter: 5 requests per minute
-const rateLimiter = new RateLimiterMemory({
-  points: 1, // Max 1 requests
-  duration: 60, // Per 60 seconds
-});
 
 export async function sendEmailAction(prevState, formData) {
   //   const formObject = {
@@ -23,17 +16,6 @@ export async function sendEmailAction(prevState, formData) {
   //   if (!parsed.success) {
   //     const errors = parsed.error.flatten().fieldErrors;
   //     return { success: false, errors, formObject };
-  //   }
-
-  //   // Rate limiting based on email or IP
-  //   const identifier = formObject.email; // You could also use IP if available
-  //   try {
-  //     await rateLimiter.consume(identifier); // Check if limit is exceeded
-  //   } catch (error) {
-  //     return {
-  //       success: false,
-  //       message: 'Too many requests. Please try again later.',
-  //     };
   //   }
 
   //   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
@@ -132,7 +114,6 @@ export async function sendEmailAction(prevState, formData) {
   // `;
 
   try {
-    console.log('test');
     // await transporter.sendMail({
     //   from: `"${formObject.name}" <${process.env.EMAIL_USER}>`,
     //   to: process.env.EMAIL_USER,
@@ -148,7 +129,10 @@ export async function sendEmailAction(prevState, formData) {
     //   html: userHtml,
     // });
 
-    return { success: true, message: 'Your message was successfully sent!' };
+    return {
+      success: true,
+      message: 'Your message was successfully sent (log)!',
+    };
   } catch (error) {
     console.error('Error sending email:', error);
     return {
