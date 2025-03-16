@@ -13,20 +13,15 @@ export const ProjectSchema = z.object({
   raised: z.number().min(0, 'Raised amount must be 0 or greater'),
   goal: z.number().min(1, 'Goal must be greater than 0'),
   images: z
-    .array(z.any())
-    .min(1, 'At least one image is required')
-    .refine((files) => files.every((file) => file.size <= 5 * 1024 * 1024), {
-      message: 'Each image must be less than 5MB',
-    })
-    .refine(
-      (files) =>
-        files.every((file) =>
-          ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'].includes(
-            file.type
-          )
-        ),
-      'Only JPEG, PNG, and WebP images are allowed'
-    ),
+    .array(
+      z.object({
+        size: z.number().max(5 * 1024 * 1024, 'Image must be less than 5MB'),
+        type: z.enum(['image/jpg', 'image/jpeg', 'image/png', 'image/webp'], {
+          message: 'Only JPEG, PNG, and WebP images are allowed',
+        }),
+      })
+    )
+    .optional(),
 });
 
 export const ToggleItemMainSchema = z.object({
@@ -44,21 +39,15 @@ export const PostSchema = z.object({
   description: z.string().min(1, 'Description is required'),
   isMain: z.boolean(),
   images: z
-    .array(z.instanceof(File))
-    .min(1, 'At least one image is required')
-    .refine(
-      (files) => files.every((file) => file.size <= 5 * 1024 * 1024),
-      'Each image must be less than 5MB'
+    .array(
+      z.object({
+        size: z.number().max(5 * 1024 * 1024, 'Image must be less than 5MB'),
+        type: z.enum(['image/jpg', 'image/jpeg', 'image/png', 'image/webp'], {
+          message: 'Only JPEG, PNG, and WebP images are allowed',
+        }),
+      })
     )
-    .refine(
-      (files) =>
-        files.every((file) =>
-          ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'].includes(
-            file.type
-          )
-        ),
-      'Only JPEG, PNG, and WebP images are allowed'
-    ),
+    .optional(),
 });
 
 export const PostIdSchema = z.string().min(1, 'Post ID is required');

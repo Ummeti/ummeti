@@ -1,9 +1,10 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { sendEmailAction } from '@/app/actions/sendEmail';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 export default function VolunteerSection({ children }) {
   const t = useTranslations('VolunteerSection');
@@ -14,6 +15,8 @@ export default function VolunteerSection({ children }) {
     errors: {},
     formObject: {},
   };
+
+  const [token, setToken] = useState('');
 
   const [state, formAction, isPending] = useActionState(
     sendEmailAction,
@@ -104,11 +107,19 @@ export default function VolunteerSection({ children }) {
               <p className="text-red-500 text-sm">{state.errors.message}</p>
             )}
 
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+              onSuccess={(token) => setToken(token)}
+              theme="light"
+            />
+
+            <input type="hidden" name="cf-turnstile-response" value={token} />
+
             <motion.button
               type="submit"
               className="text-gray-900 bg-second hover:bg-second-light tracking-wide rounded-lg text-sm px-4 py-3 flex items-center justify-center w-full !mt-6 disabled:bg-second-lightest"
-              whileTap={{ scale: 0.95 }}
-              disabled={isPending}
+              whileTap={{ scale: token ? 0.95 : 1 }}
+              disabled={isPending || !token}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,10 @@
 'use client';
+
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { useActionState } from 'react';
 import { sendEmailAction } from '@/app/actions/sendEmail';
+import { Turnstile } from '@marsidev/react-turnstile';
 import { useTranslations } from 'next-intl';
 
 export default function ContactForm() {
@@ -11,11 +15,11 @@ export default function ContactForm() {
     formObject: {},
   };
 
+  const [token, setToken] = useState('');
   const [state, formAction, isPending] = useActionState(
     sendEmailAction,
     initialState
   );
-
   const t = useTranslations('ContactPage');
 
   return (
@@ -29,13 +33,9 @@ export default function ContactForm() {
             <input
               type="text"
               name="name"
-              placeholder={t('form.name.placeholder')}
-              className="w-full p-3 bg-gray-50 text-gray-800 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main"
-              defaultValue={state.formObject?.name}
+              required
+              className="w-full p-3 bg-gray-50 border rounded-lg"
             />
-            {state.errors?.name && (
-              <p className="text-red-500 text-sm">{state.errors.name}</p>
-            )}
           </div>
           <div>
             <label className="block text-gray-600 mb-2">
@@ -44,13 +44,9 @@ export default function ContactForm() {
             <input
               type="text"
               name="subject"
-              placeholder={t('form.subject.placeholder')}
-              className="w-full p-3 bg-gray-50 text-gray-800 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main"
-              defaultValue={state.formObject?.subject}
+              required
+              className="w-full p-3 bg-gray-50 border rounded-lg"
             />
-            {state.errors?.subject && (
-              <p className="text-red-500 text-sm">{state.errors.subject}</p>
-            )}
           </div>
         </div>
         <div>
@@ -60,36 +56,38 @@ export default function ContactForm() {
           <input
             type="email"
             name="email"
-            placeholder={t('form.email.placeholder')}
-            className="w-full p-3 bg-gray-50 text-gray-800 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main"
-            defaultValue={state.formObject?.email}
+            required
+            className="w-full p-3 bg-gray-50 border rounded-lg"
           />
-          {state.errors?.email && (
-            <p className="text-red-500 text-sm">{state.errors.email}</p>
-          )}
         </div>
-
         <div>
           <label className="block text-gray-600 mb-2">
             {t('form.message.label')}
           </label>
           <textarea
             name="message"
-            placeholder={t('form.message.placeholder')}
-            className="w-full p-3 bg-gray-50 text-gray-800 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-main h-32"
-            defaultValue={state.formObject?.message}
+            required
+            className="w-full p-3 bg-gray-50 border rounded-lg h-32"
           ></textarea>
-          {state.errors?.message && (
-            <p className="text-red-500 text-sm">{state.errors.message}</p>
-          )}
         </div>
-        <button
+
+        <Turnstile
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+          onSuccess={(token) => setToken(token)}
+          theme="light"
+        />
+
+        <input type="hidden" name="cf-turnstile-response" value={token} />
+
+        <motion.button
           type="submit"
-          className="w-full bg-main text-white py-3 rounded-lg font-bold hover:bg-main-light transition disabled:bg-main-lightest"
-          disabled={isPending}
+          className="w-full bg-main text-white py-3 rounded-lg font-bold"
+          whileTap={{ scale: token ? 0.95 : 1 }}
+          disabled={isPending || !token}
         >
           {isPending ? t('form.button.sending') : t('form.button.send')}
-        </button>
+        </motion.button>
+
         {state.message && (
           <p
             className={`text-sm mt-4 ${
