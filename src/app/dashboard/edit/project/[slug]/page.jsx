@@ -8,6 +8,8 @@ export default async function EditProject({ params }) {
 
   const project = await fetchProjectBySlug(decodedSlug);
   if (!project) notFound();
+
   const categories = await fetchCategories();
+
   return <UpdateProjectForm project={project} categories={categories} />;
 }
