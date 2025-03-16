@@ -103,8 +103,112 @@ async function generateUniqueSlug(title) {
   return finalSlug;
 }
 
-export async function updatePostAction(formData) {
-  console.log(formData);
+export async function updatePostAction(prevState, formData) {
+  const session = await auth();
+  if (!session?.user) {
+    return {
+      success: false,
+      message: 'Unauthorized: You must be logged in to update a post',
+    };
+  }
+
+  const postId = formData.get('id');
+
+  const existingPost = await prisma.post.findUnique({
+    where: { id: postId },
+  });
+
+  if (!existingPost) {
+    return {
+      success: false,
+      message: 'Post not found',
+    };
+  }
+
+  const formObject = {
+    title: String(formData.get('title') || ''),
+    description: String(formData.get('description') || ''),
+    isMain: formData.get('isMain') === 'true',
+    images: formData.getAll('images').filter((file) => file && file.size > 0),
+  };
+
+  const parsed = PostSchema.safeParse(formObject);
+  if (!parsed.success) {
+    return {
+      success: false,
+      message: '',
+      errors: parsed.error.flatten().fieldErrors,
+      formObject,
+    };
+  }
+
+  try {
+    const newImages = formData
+      .getAll('images')
+      .filter((file) => file && file.size > 0);
+    const getImagesToRemove = formData.getAll('imagesToRemove');
+    const imagesToRemoveUrls = getImagesToRemove ? getImagesToRemove : [];
+
+    const imagesToRemove = imagesToRemoveUrls.map((url) => {
+      try {
+        const urlObj = new URL(url);
+        const pathParts = urlObj.pathname.split('/');
+        return pathParts.slice(pathParts.indexOf('posts')).join('/');
+      } catch (error) {
+        console.error('Error parsing image URL:', url, error);
+        return url;
+      }
+    });
+    const newImageKeys =
+      newImages.length > 0 ? await uploadImages(newImages) : [];
+
+    const remainingImages = existingPost.images.filter(
+      (img) => !imagesToRemove.some((key) => img.includes(key))
+    );
+
+    const updatedImages = [...remainingImages, ...newImageKeys];
+    let slug = existingPost.slug;
+    if (existingPost.title !== parsed.data.title) {
+      slug = await generateUniqueSlug(parsed.data.title);
+    }
+
+    const updatedPost = await prisma.post.update({
+      where: { id: postId },
+      data: {
+        title: parsed.data.title,
+        description: parsed.data.description,
+        isMain: parsed.data.isMain,
+        slug,
+        images: updatedImages,
+      },
+    });
+
+    if (imagesToRemove.length > 0) {
+      await s3Client.send(
+        new DeleteObjectsCommand({
+          Bucket: process.env.AWS_S3_BUCKET,
+          Delete: {
+            Objects: imagesToRemove.map((key) => ({ Key: key })),
+            Quiet: true,
+          },
+        })
+      );
+    }
+
+    revalidatePath('/dashboard');
+    return {
+      success: true,
+      message: 'Post updated successfully',
+      post: updatedPost,
+    };
+  } catch (error) {
+    console.error('Error updating post:', error);
+    return {
+      success: false,
+      message: 'Failed to update post due to a server error.',
+      formObject,
+    };
+  }
 }
 
 export async function TogglePostMainAction(prevState, formData) {

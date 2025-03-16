@@ -14,12 +14,19 @@ export const ProjectSchema = z.object({
   goal: z.number().min(1, 'Goal must be greater than 0'),
   images: z
     .array(
-      z.object({
-        size: z.number().max(5 * 1024 * 1024, 'Image must be less than 5MB'),
-        type: z.enum(['image/jpg', 'image/jpeg', 'image/png', 'image/webp'], {
-          message: 'Only JPEG, PNG, and WebP images are allowed',
-        }),
-      })
+      z
+        .custom((val) => val instanceof File, 'Must be a valid File object')
+        .refine(
+          (file) => file.size <= 5 * 1024 * 1024,
+          'Image must be less than 5MB'
+        )
+        .refine(
+          (file) =>
+            ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'].includes(
+              file.type
+            ),
+          'Only JPEG, PNG, and WebP images are allowed'
+        )
     )
     .optional(),
 });
@@ -40,12 +47,19 @@ export const PostSchema = z.object({
   isMain: z.boolean(),
   images: z
     .array(
-      z.object({
-        size: z.number().max(5 * 1024 * 1024, 'Image must be less than 5MB'),
-        type: z.enum(['image/jpg', 'image/jpeg', 'image/png', 'image/webp'], {
-          message: 'Only JPEG, PNG, and WebP images are allowed',
-        }),
-      })
+      z
+        .custom((val) => val instanceof File, 'Must be a valid File object')
+        .refine(
+          (file) => file.size <= 5 * 1024 * 1024,
+          'Image must be less than 5MB'
+        )
+        .refine(
+          (file) =>
+            ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'].includes(
+              file.type
+            ),
+          'Only JPEG, PNG, and WebP images are allowed'
+        )
     )
     .optional(),
 });
