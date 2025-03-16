@@ -44,7 +44,7 @@ export default function AddPostForm() {
     setImages((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = async (formData) => {
+  const handleSubmit = (formData) => {
     const submitData = new FormData();
 
     submitData.append('title', formData.get('title'));
@@ -55,7 +55,7 @@ export default function AddPostForm() {
       submitData.append(`images`, image.file);
     });
 
-    await formAction(submitData);
+    formAction(submitData);
   };
 
   return (
@@ -142,8 +142,6 @@ export default function AddPostForm() {
               }`}
             >
               <UploadIcon />
-              <span>Drop files here</span>
-              <span className="text-gray-500 text-xs">or</span>
               <span className="text-main font-semibold">Browse</span>
             </label>
           </div>

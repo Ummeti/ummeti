@@ -1,17 +1,9 @@
 import { z } from 'zod';
 
-const CategorySchema = z
+export const CategorySchema = z
   .string()
-  .min(1, 'Category is required')
-  .max(50, 'Category title must not exceed 50 characters')
-  .superRefine((data, ctx) => {
-    if (data.length < 2) {
-      ctx.addIssue({
-        path: ['category'],
-        message: 'Category must be at least 2 characters',
-      });
-    }
-  });
+  .min(2, 'Category must be at least 2 characters')
+  .max(50, 'Category title must not exceed 50 characters');
 
 export const ProjectSchema = z.object({
   title: z.string().min(1, 'Title is required').max(100),

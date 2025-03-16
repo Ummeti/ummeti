@@ -11,6 +11,7 @@ import {
 import { slugify } from '@/lib/utils';
 import { PutObjectCommand, DeleteObjectsCommand } from '@aws-sdk/client-s3';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export async function addProjectAction(prevState, formData) {
   const session = await auth();
@@ -123,6 +124,135 @@ async function generateUniqueSlug(title) {
   return finalSlug;
 }
 
+export async function updateProjectAction(prevState, formData) {
+  const session = await auth();
+  if (!session?.user) {
+    return {
+      success: false,
+      message: 'Unauthorized: You must be logged in to update a project',
+    };
+  }
+
+  const projectId = formData.get('id');
+
+  const existingProject = await prisma.project.findUnique({
+    where: { id: projectId },
+    include: { category: true },
+  });
+
+  if (!existingProject) {
+    return {
+      success: false,
+      message: 'Project not found',
+    };
+  }
+
+  const formObject = {
+    title: String(formData.get('title') || ''),
+    description: String(formData.get('description') || ''),
+    isMain: formData.get('isMain') === 'true',
+    category: String(formData.get('category') || ''),
+    raised: Number.parseFloat(formData.get('raised')) || 0,
+    goal: Number.parseFloat(formData.get('goal')) || 0,
+    images: formData.getAll('images').filter((file) => file && file.size > 0),
+  };
+
+  const parsed = ProjectSchema.safeParse(formObject);
+  if (!parsed.success) {
+    return {
+      success: false,
+      message: '',
+      errors: parsed.error.flatten().fieldErrors,
+      formObject,
+    };
+  }
+
+  try {
+    const newImages = formData
+      .getAll('images')
+      .filter((file) => file && file.size > 0);
+    const getImagesToRemove = formData.getAll('imagesToRemove');
+    const imagesToRemoveUrls = getImagesToRemove ? getImagesToRemove : [];
+
+    const imagesToRemove = imagesToRemoveUrls.map((url) => {
+      try {
+        const urlObj = new URL(url);
+        const pathParts = urlObj.pathname.split('/');
+        return pathParts.slice(pathParts.indexOf('projects')).join('/');
+      } catch (error) {
+        console.error('Error parsing image URL:', url, error);
+        return url;
+      }
+    });
+    const newImageKeys =
+      newImages.length > 0 ? await uploadImages(newImages) : [];
+
+    const remainingImages = existingProject.images.filter(
+      (img) => !imagesToRemove.some((key) => img.includes(key))
+    );
+
+    const updatedImages = [...remainingImages, ...newImageKeys];
+
+    let slug = existingProject.slug;
+    if (existingProject.title !== parsed.data.title) {
+      slug = await generateUniqueSlug(parsed.data.title);
+    }
+
+    const { category, ...projectData } = parsed.data;
+    let categoryRecord = await prisma.category.findFirst({
+      where: { title: category },
+    });
+
+    if (!categoryRecord) {
+      categoryRecord = await prisma.category.create({
+        data: {
+          title: category,
+          userId: session.user.id,
+        },
+      });
+    }
+
+    const updatedProject = await prisma.project.update({
+      where: { id: projectId },
+      data: {
+        ...projectData,
+        slug,
+        categoryId: categoryRecord.id,
+        images: updatedImages,
+      },
+    });
+
+    if (imagesToRemove.length > 0) {
+      try {
+        await s3Client.send(
+          new DeleteObjectsCommand({
+            Bucket: process.env.AWS_S3_BUCKET,
+            Delete: {
+              Objects: imagesToRemove.map((key) => ({ Key: key })),
+              Quiet: true,
+            },
+          })
+        );
+      } catch (error) {
+        console.error('Error deleting images from S3:', error);
+      }
+    }
+    return {
+      redirect: '/dashbaord',
+      success: true,
+      message: 'Project updated successfully',
+      project: updatedProject,
+    };
+  } catch (error) {
+    console.error('Error updating project:', error);
+    return {
+      success: false,
+      message: 'Failed to update project due to a server error.',
+      formObject,
+    };
+  }
+}
+
 export async function ToggleProjectMainAction(prevState, formData) {
   const session = await auth();
   if (!session?.user) {
@@ -136,8 +266,6 @@ export async function ToggleProjectMainAction(prevState, formData) {
     id: formData.get('id'),
     isMain: formData.get('isMain') === 'true',
   };
-
-  console.log(formObject);
 
   const parsed = ToggleItemMainSchema.safeParse(formObject);
   if (!parsed.success) {

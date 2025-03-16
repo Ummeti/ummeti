@@ -51,10 +51,10 @@ export default function AddProjectForm({ categories }) {
         Add Project
       </h2>
       <form
-        action={async (formData) => {
+        action={(formData) => {
           images.forEach((image) => formData.append('images', image.file));
           formData.set('isMain', isMain);
-          await formAction(formData);
+          formAction(formData);
         }}
         className="mt-8 space-y-4 max-w-xl mx-auto bg-white p-6 shadow-lg rounded-lg"
         noValidate
@@ -201,7 +201,6 @@ export default function AddProjectForm({ categories }) {
             }`}
           >
             <UploadIcon />
-            <span>Drop files or</span>
             <span className="text-main font-semibold">Browse</span>
           </label>
         </div>

@@ -74,6 +74,14 @@ export const fetchPostBySlug = async (slug) => {
   return enhancedPosts[0];
 };
 
+export const fetchCategoy = async (id) => {
+  const category = prisma.category.findUnique({
+    where: { id },
+  });
+  if (!category) return null;
+  return category;
+};
+
 export const enhanceUserWithProfilePicture = async (users) => {
   return Promise.all(
     users.map(async (user) => ({

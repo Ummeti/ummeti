@@ -25,7 +25,6 @@ export async function addPostAction(prevState, formData) {
   };
 
   const parsed = PostSchema.safeParse(formObject);
-  console.log(parsed.data);
 
   if (!parsed.success) {
     return {
@@ -104,8 +103,11 @@ async function generateUniqueSlug(title) {
   return finalSlug;
 }
 
-export async function TogglePostMainAction(prevState, formData) {
+export async function updatePostAction(formData) {
   console.log(formData);
+}
+
+export async function TogglePostMainAction(prevState, formData) {
   const session = await auth();
   if (!session?.user) {
     return {
