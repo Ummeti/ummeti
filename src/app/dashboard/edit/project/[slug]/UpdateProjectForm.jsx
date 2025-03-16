@@ -6,12 +6,13 @@ import Image from 'next/image';
 import { updateProjectAction } from '@/app/actions/projectActions';
 import Toggle from '@/app/dashboard/ui/Toggle';
 import { CautionIcon, RemoveIcon, UploadIcon } from '@/app/dashboard/ui/Icons';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 
-export default function UpdateProjectForm({ project, categories }) {
+export default function UpdateProjectForm({ project = {}, categories = {} }) {
   const [newImages, setNewImages] = useState([]);
+
   const [existingImages, setExistingImages] = useState(
-    project.images?.map((img) => ({
+    project?.images?.map((img) => ({
       id: img,
       img: typeof img === 'string' ? img : '/placeholder.svg',
       toRemove: false,
@@ -34,6 +35,8 @@ export default function UpdateProjectForm({ project, categories }) {
   const [selectedCategory, setSelectedCategory] = useState(
     project.category?.title || ''
   );
+
+  const router = useRouter();
 
   const handleFileChange = (e) => {
     const newImagesArray = Array.from(e.target.files || []).map((file) => ({
@@ -69,9 +72,9 @@ export default function UpdateProjectForm({ project, categories }) {
 
   useEffect(() => {
     if (state.success) {
-      redirect('/dashboard');
+      router.push('/dashboard');
     }
-  }, [state.success]);
+  }, [state.success, router]);
 
   return (
     <div className="py-8">
