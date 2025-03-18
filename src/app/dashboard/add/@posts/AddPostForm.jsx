@@ -6,6 +6,8 @@ import { CautionIcon, RemoveIcon, UploadIcon } from '../../ui/Icons';
 import { addPostAction } from '@/app/actions/postActions';
 import { useActionState } from 'react';
 import Toggle from '../../ui/Toggle';
+import { useNotification } from '../../context/NotificationContext';
+import { useRouter } from 'next/navigation';
 
 export default function AddPostForm() {
   const [images, setImages] = useState([]);
@@ -23,12 +25,21 @@ export default function AddPostForm() {
   );
 
   const [isMain, setIsMain] = useState(false);
+  const { showNotification } = useNotification();
+  const router = useRouter();
 
   useEffect(() => {
+    if (state.message) {
+      showNotification({
+        message: state.message,
+        type: state.success ? 'success' : 'error',
+      });
+    }
     if (state.success) {
       setImages([]);
+      router.push('/dashboard');
     }
-  }, [state.success]);
+  }, [state.message, router]);
 
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);

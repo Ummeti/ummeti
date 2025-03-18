@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import { useActionState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { updatePostAction } from '@/app/actions/postActions'; // Import the post action
+import { updatePostAction } from '@/app/actions/postActions';
 import Toggle from '@/app/dashboard/ui/Toggle';
 import { CautionIcon, RemoveIcon, UploadIcon } from '@/app/dashboard/ui/Icons';
 import { useRouter } from 'next/navigation';
+import { useNotification } from '@/app/dashboard/context/NotificationContext';
 
 export default function UpdatePostForm({ post = {} }) {
-  // Changed from project to post
   const [newImages, setNewImages] = useState([]);
 
   const [existingImages, setExistingImages] = useState(
@@ -28,11 +28,12 @@ export default function UpdatePostForm({ post = {} }) {
   };
 
   const [state, formAction, isPending] = useActionState(
-    updatePostAction, // Using post action instead of project
+    updatePostAction,
     initialState
   );
 
   const [isMain, setIsMain] = useState(post.isMain);
+  const { showNotification } = useNotification();
   const router = useRouter();
 
   const handleFileChange = (e) => {
@@ -60,10 +61,16 @@ export default function UpdatePostForm({ post = {} }) {
   };
 
   useEffect(() => {
+    if (state.message) {
+      showNotification({
+        message: state.message,
+        type: state.success ? 'success' : 'error',
+      });
+    }
     if (state.success) {
       router.push('/dashboard');
     }
-  }, [state.success, router]);
+  }, [state.message, router]);
 
   return (
     <div className="py-8">

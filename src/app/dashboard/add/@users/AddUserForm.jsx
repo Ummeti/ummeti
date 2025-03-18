@@ -2,7 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { addUserAction } from '@/app/actions/userActions';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
+import { useNotification } from '../../context/NotificationContext';
+import { useRouter } from 'next/navigation';
 
 export default function AddUserForm() {
   const initialState = {
@@ -15,6 +17,21 @@ export default function AddUserForm() {
     addUserAction,
     initialState
   );
+
+  const { showNotification } = useNotification();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state.message) {
+      showNotification({
+        message: state.message,
+        type: state.success ? 'success' : 'error',
+      });
+    }
+    if (state.success) {
+      router.push('/dashboard');
+    }
+  }, [state.message, router]);
 
   return (
     <div className="py-8">

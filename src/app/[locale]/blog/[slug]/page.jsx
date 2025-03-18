@@ -31,7 +31,7 @@ export default async function BlogPost({ params }) {
         <div className="relative w-full aspect-video mb-8">
           <Image
             src="/bg.jpg"
-            alt="Featured image"
+            alt={title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority

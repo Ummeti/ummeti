@@ -17,7 +17,7 @@ export default function Footer() {
               href="/"
               className="flex justify-center text-white sm:justify-start"
             >
-              <Image src="/logo-2.webp" alt="Ummati" width={100} height={100} />
+              <Image src="/logo-2.webp" alt="Ummeti" width={100} height={100} />
             </Link>
             <p className="mt-6 max-w-md text-center leading-relaxed text-gray-100 sm:max-w-xs sm:text-left">
               {t('description')}

@@ -2,7 +2,8 @@
 
 import { updateContactAction } from '@/app/actions/updateContactAction';
 import { motion } from 'framer-motion';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
+import { useNotification } from '../context/NotificationContext';
 
 export default function UpdateContactForm({ contact }) {
   const initialState = {
@@ -16,6 +17,17 @@ export default function UpdateContactForm({ contact }) {
     updateContactAction,
     initialState
   );
+
+  const { showNotification } = useNotification();
+
+  useEffect(() => {
+    if (state.message) {
+      showNotification({
+        message: state.message,
+        type: state.success ? 'success' : 'error',
+      });
+    }
+  }, [state.message]);
 
   return (
     <div className="py-8">

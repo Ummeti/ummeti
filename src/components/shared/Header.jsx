@@ -25,7 +25,7 @@ export default function Header() {
         <Link href="/">
           <Image
             src="/logo.webp"
-            alt="Ummati"
+            alt="Ummeti"
             width={100}
             height={100}
             priority

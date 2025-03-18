@@ -7,6 +7,7 @@ import { updateProjectAction } from '@/app/actions/projectActions';
 import Toggle from '@/app/dashboard/ui/Toggle';
 import { CautionIcon, RemoveIcon, UploadIcon } from '@/app/dashboard/ui/Icons';
 import { redirect, useRouter } from 'next/navigation';
+import { useNotification } from '@/app/dashboard/context/NotificationContext';
 
 export default function UpdateProjectForm({ project = {}, categories = {} }) {
   const [newImages, setNewImages] = useState([]);
@@ -36,6 +37,7 @@ export default function UpdateProjectForm({ project = {}, categories = {} }) {
     project.category?.title || ''
   );
 
+  const { showNotification } = useNotification();
   const router = useRouter();
 
   const handleFileChange = (e) => {
@@ -71,10 +73,16 @@ export default function UpdateProjectForm({ project = {}, categories = {} }) {
   }, [project.category, state.formObject?.category]);
 
   useEffect(() => {
+    if (state.message) {
+      showNotification({
+        message: state.message,
+        type: state.success ? 'success' : 'error',
+      });
+    }
     if (state.success) {
       router.push('/dashboard');
     }
-  }, [state.success, router]);
+  }, [state.message, router]);
 
   return (
     <div className="py-8">

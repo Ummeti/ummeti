@@ -68,9 +68,7 @@ export async function updateStatsAction(prevState, formData) {
     revalidatePath('/');
     return {
       success: true,
-      message: validatedData.isAuto
-        ? 'Stats updated to use auto project count!'
-        : 'Stats updated with manual project count!',
+      message: 'Stats updated successfully!',
     };
   } catch (error) {
     console.error('Error updating stats:', error);

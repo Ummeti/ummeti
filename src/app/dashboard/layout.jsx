@@ -4,6 +4,7 @@ import Sidebar from './layout/Sidebar';
 import ProfileDropdown from './layout/ProfileDropdown';
 import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
+import { NotificationProvider } from './context/NotificationContext';
 
 export const metadata = {
   title: 'Ummati Dashboard',
@@ -22,11 +23,13 @@ export default async function DashboardLayout({ children }) {
   return (
     <html>
       <body className="flex min-h-screen">
-        <Sidebar />
-        <div className="flex-1">
-          <ProfileDropdown user={user} />
-          {children}
-        </div>
+        <NotificationProvider>
+          <Sidebar />
+          <div className="flex-1">
+            <ProfileDropdown user={user} />
+            {children}
+          </div>
+        </NotificationProvider>
       </body>
     </html>
   );

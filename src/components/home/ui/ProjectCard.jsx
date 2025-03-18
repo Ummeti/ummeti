@@ -22,7 +22,7 @@ export default function ProjectCard({
       }}
     >
       <div className="relative aspect-video">
-        <Image src={images[0]} alt="test" fill className="object-cover" />
+        <Image src={images[0]} alt={title} fill className="object-cover" />
       </div>
       <div className="p-4 space-y-4">
         <h3 className="text-lg font-medium text-gray-900 line-clamp-1 capitalize">

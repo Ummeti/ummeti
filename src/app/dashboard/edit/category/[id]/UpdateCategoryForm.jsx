@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { updateCategoryAction } from '@/app/actions/categoryActions';
 import { useActionState } from 'react';
+import { useNotification } from '@/app/dashboard/context/NotificationContext';
+import { useRouter } from 'next/navigation';
 
 export default function UpdateCategoryForm({ categoryId, initialTitle }) {
   const initialState = {
@@ -19,6 +21,20 @@ export default function UpdateCategoryForm({ categoryId, initialTitle }) {
   );
 
   const [title, setTitle] = useState(initialTitle);
+  const { showNotification } = useNotification();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state.message) {
+      showNotification({
+        message: state.message,
+        type: state.success ? 'success' : 'error',
+      });
+    }
+    if (state.success) {
+      router.push('/dashboard');
+    }
+  }, [state.message, router]);
 
   const handleSubmit = async (formData) => {
     formData.set('id', categoryId);

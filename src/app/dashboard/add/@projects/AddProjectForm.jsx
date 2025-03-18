@@ -7,6 +7,8 @@ import { addProjectAction } from '@/app/actions/projectActions';
 import { CautionIcon, RemoveIcon, UploadIcon } from '../../ui/Icons';
 import { useActionState } from 'react';
 import Toggle from '../../ui/Toggle';
+import { useNotification } from '../../context/NotificationContext';
+import { useRouter } from 'next/navigation';
 
 export default function AddProjectForm({ categories }) {
   const [images, setImages] = useState([]);
@@ -25,12 +27,22 @@ export default function AddProjectForm({ categories }) {
 
   const [isMain, setIsMain] = useState(false);
 
+  const { showNotification } = useNotification();
+  const router = useRouter();
+
   useEffect(() => {
+    if (state.message) {
+      showNotification({
+        message: state.message,
+        type: state.success ? 'success' : 'error',
+      });
+    }
     if (state.success) {
       setImages([]);
       setShowNewCategory(false);
+      router.push('/dashboard');
     }
-  }, [state.success]);
+  }, [state.message, router]);
 
   const handleFileChange = (e) => {
     const newImages = Array.from(e.target.files || []).map((file) => ({

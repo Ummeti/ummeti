@@ -53,7 +53,12 @@ export default function AboutSection() {
               transition={{ duration: 0.3 }}
               className="relative aspect-video flex md:items-center md:justify-start justify-center rounded-lg overflow-hidden"
             >
-              <Image src="/bg.jpg" alt="" fill className="object-cover" />
+              <Image
+                src="/bg.jpg"
+                alt="About Ummeti"
+                fill
+                className="object-cover"
+              />
             </motion.div>
           </motion.div>
           <div className="border-l-2 md:border-second border-white p-4 sm:px-6 md:px-8 py-6 col-span-2">

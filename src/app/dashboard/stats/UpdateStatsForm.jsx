@@ -2,9 +2,10 @@
 
 import Toggle from '../ui/Toggle';
 import { motion } from 'framer-motion';
-import { useActionState, useState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 import { updateStatsAction } from '@/app/actions/updateStatsAction';
 import { CautionIcon } from '../ui/Icons';
+import { useNotification } from '../context/NotificationContext';
 
 export default function UpdateStatsForm({ stats }) {
   const initialState = {
@@ -20,6 +21,17 @@ export default function UpdateStatsForm({ stats }) {
   );
 
   const [isAuto, setIsAuto] = useState(stats?.isAuto ?? false);
+
+  const { showNotification } = useNotification();
+
+  useEffect(() => {
+    if (state.message) {
+      showNotification({
+        message: state.message,
+        type: state.success ? 'success' : 'error',
+      });
+    }
+  }, [state.message]);
 
   const handleToggleChange = (e) => {
     setIsAuto(e.target.checked);

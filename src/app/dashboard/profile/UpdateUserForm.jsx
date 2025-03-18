@@ -1,9 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { UploadIcon } from '../ui/Icons';
 import { updateUserAction } from '@/app/actions/userActions';
+import { useNotification } from '../context/NotificationContext';
 
 export default function UpdateUserForm({ user }) {
   const initialState = {
@@ -17,6 +18,17 @@ export default function UpdateUserForm({ user }) {
     updateUserAction,
     initialState
   );
+
+  const { showNotification } = useNotification();
+
+  useEffect(() => {
+    if (state.message) {
+      showNotification({
+        message: state.message,
+        type: state.success ? 'success' : 'error',
+      });
+    }
+  }, [state.message]);
 
   return (
     <div className="py-8">
