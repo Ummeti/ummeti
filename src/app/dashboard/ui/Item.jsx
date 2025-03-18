@@ -86,7 +86,12 @@ const Item = memo(
               />
             </div>
           )}
-          {item.goal && (
+          {item?._count && (
+            <p className="md:col-span-2 col-span-12 w-full text-center text-gray-500 text-lg font-medium leading-8">
+              {item._count?.projects}
+            </p>
+          )}
+          {item?.goal && (
             <>
               <p
                 className="md:col-span-2 col-span-12 w-full text-center text-gray-500 text-lg font-medium leading-8"

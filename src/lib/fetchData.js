@@ -45,12 +45,17 @@ export const fetchPosts = async () => {
 
 export const fetchCategories = async () => {
   const categories = await prisma.category.findMany({
-    include: { user: true },
+    include: {
+      user: true,
+      _count: {
+        select: { projects: true },
+      },
+    },
     orderBy: { createdAt: 'desc' },
   });
+
   return categories;
 };
-
 export const fetchProjectBySlug = async (slug) => {
   const project = await prisma.project.findUnique({
     where: { slug },

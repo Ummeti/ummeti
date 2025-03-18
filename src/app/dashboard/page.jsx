@@ -36,7 +36,7 @@ const tabConfig = {
     ToggleItemMainAction: TogglePostMainAction,
   },
   categories: {
-    headers: ['Categories', 'Category'],
+    headers: ['Categories', 'Category', 'Projects'],
     removeAction: removeCategoryAction,
   },
   reviews: {
