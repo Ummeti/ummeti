@@ -38,6 +38,19 @@ export async function addUserAction(prevState, formData) {
 
   try {
     const validatedData = parsed.data;
+
+    const existingUser = await prisma.user.findUnique({
+      where: { email: validatedData.email },
+    });
+
+    if (existingUser) {
+      return {
+        success: false,
+        message: 'A user with this email already exists',
+        formObject,
+      };
+    }
+
     await createUser(validatedData);
 
     revalidatePath('/dashboard');
@@ -199,6 +212,21 @@ export async function removeUserAction(email) {
       message: 'Unauthorized: You must be logged in to remove a user',
     };
   }
+
+  if (session.user.role !== 'admin') {
+    return {
+      success: false,
+      message: 'Unauthorized: Only super admin can remove users',
+    };
+  }
+
+  if (session.user.email === email) {
+    return {
+      success: false,
+      message: 'Unauthorized: Super admin cannot delete himself',
+    };
+  }
+
   const parsed = RemoveUserSchema.safeParse({ email });
 
   if (!parsed.success) {

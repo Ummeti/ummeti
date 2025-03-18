@@ -25,7 +25,7 @@ export async function GET(request) {
     }
 
     const newUser = await prisma.user.create({
-      data: { name: 'Admin', email },
+      data: { name: 'Admin', email, role: 'admin' },
     });
 
     return NextResponse.json(

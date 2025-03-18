@@ -1,6 +1,7 @@
 'use client';
+import { useNotification } from '../context/NotificationContext';
 import Toggle from './Toggle';
-import { startTransition, useActionState, useState } from 'react';
+import { startTransition, useActionState, useEffect, useState } from 'react';
 
 export default function ToggleItemMain({ isMain, id, ToggleItemMainAction }) {
   const initialState = {
@@ -16,6 +17,16 @@ export default function ToggleItemMain({ isMain, id, ToggleItemMainAction }) {
   );
 
   const [isItemMain, setIsItemMain] = useState(isMain ?? false);
+  const { showNotification } = useNotification();
+
+  useEffect(() => {
+    if (state.message) {
+      showNotification({
+        message: state.message,
+        type: state.success ? 'success' : 'error',
+      });
+    }
+  }, [state.message]);
 
   const handleToggleChange = () => {
     const newState = !isItemMain;
@@ -36,19 +47,6 @@ export default function ToggleItemMain({ isMain, id, ToggleItemMainAction }) {
         onChange={handleToggleChange}
         isPending={isPending}
       />
-      {/* {state?.message && (
-        <p
-          className={`text-sm text-center ${
-            state.success ? 'text-green-600' : 'text-red-600'
-          }`}
-        >
-          {state.message}
-        </p>
-      )}
-
-      {state?.errors?.isMain && (
-        <p className="text-red-500 text-sm">{state.errors.isMain}</p>
-      )} */}
     </div>
   );
 }

@@ -12,6 +12,7 @@ model User {
   email          String   @unique
   emailVerified  DateTime?
   name           String
+  role           String   @default("user")
   profilePicture String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
