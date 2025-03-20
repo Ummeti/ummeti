@@ -10,7 +10,8 @@ export default function Statistics({ stats, projectsCount }) {
   const statsList = [
     {
       label: t('projects'),
-      value: stats.isAuto && projectsCount ? projectsCount : stats?.projects,
+      value:
+        stats?.isAuto && projectsCount >= 0 ? projectsCount : stats?.projects,
     },
     { label: t('supporters'), value: stats?.supporters },
     { label: t('served'), value: stats?.served },
