@@ -27,6 +27,14 @@ export default function LocaleDropdown() {
     ru: <RuFlagIcon />,
   };
 
+  const localeNames = {
+    en: 'English',
+    tr: 'Türkçe',
+    ar: 'العربية',
+    id: 'Indonesia',
+    ru: 'Русский',
+  };
+
   const switchLocale = (newLocale) => {
     if (newLocale !== currentLocale) {
       startTransition(() => {
@@ -43,10 +51,12 @@ export default function LocaleDropdown() {
         disabled={isPending}
         className="flex items-center gap-2 border px-3 py-1 text-sm font-medium rounded-lg text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
         aria-expanded={isOpen}
-        aria-label={`Current language: ${currentLocale.toUpperCase()}, click to change`}
+        aria-label={`Current language: ${
+          localeNames[currentLocale] || currentLocale
+        }, click to change`}
       >
         {localeIcons[currentLocale]}
-        {currentLocale.toUpperCase()}
+        {localeNames[currentLocale] || currentLocale}
         <span
           className={`ml-1 transition-transform ${isOpen ? 'rotate-180' : ''}`}
         >
@@ -55,7 +65,7 @@ export default function LocaleDropdown() {
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 mt-2 w-32 bg-white border rounded-lg shadow-lg z-10 overflow-hidden">
+        <div className="absolute left-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-10 overflow-hidden">
           {routing.locales.map((locale) => (
             <button
               key={locale}
@@ -64,7 +74,7 @@ export default function LocaleDropdown() {
               className="w-full flex items-center gap-2 border-b last:border-b-0 px-3 py-1 text-sm font-medium text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {localeIcons[locale]}
-              {locale.toUpperCase()}
+              {localeNames[locale] || locale}
             </button>
           ))}
         </div>
