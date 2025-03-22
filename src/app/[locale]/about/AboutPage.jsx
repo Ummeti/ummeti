@@ -29,7 +29,7 @@ export default function AboutPage({ stats, projectsCount }) {
         >
           <Image
             className="object-cover"
-            src="/bg-4.jpg"
+            src="/about.jpg"
             alt={t('heroImageAlt')}
             fill
           />
@@ -127,7 +127,7 @@ export default function AboutPage({ stats, projectsCount }) {
         >
           <Image
             className="object-cover"
-            src="/bg-1.jpg"
+            src="/about2.jpg"
             alt={t('secondImageAlt')}
             fill
           />

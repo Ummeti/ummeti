@@ -54,7 +54,7 @@ export default function AboutSection() {
               className="relative aspect-video flex md:items-center md:justify-start justify-center rounded-lg overflow-hidden"
             >
               <Image
-                src="/bg.jpg"
+                src="/about.jpg"
                 alt="About Ummeti"
                 fill
                 className="object-cover"
